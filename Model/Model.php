@@ -16,6 +16,7 @@ abstract class Model
     const PASSWORD = "";
     const BASE = "associationdcd";
 
+
     protected $connexion;
 
     /**
