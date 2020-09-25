@@ -1,0 +1,69 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+}
+.cardHome{
+  overflow: hidden;
+  height: 11.938em;
+}
+.cardHome span {
+  position: absolute;
+  top: 6%;
+  left: 15%;
+  background: #1ABC9C;
+  padding: 6px;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  transform: translate(-50%,-50%);
+}
+.cardHome span h4 {
+  font-size: 0.750em;
+  margin: 0;
+  padding: 10px 5px;
+  line-height: 0;
+}
+.card-body {
+  min-height: 230px !important;
+}
+.card-body a {
+  text-decoration: none;
+  color: black;
+}
+.card-body a:hover {
+  text-decoration: none;
+  color: black;
+}
+.text-right a {
+  text-decoration: none;
+  color: white;
+}
+.text-right a:hover {
+  text-decoration: none;
+  color: white;
+}
+.img {
+  width: 100%;
+  height: auto;
+}
+img.mt-2.mb-2 {
+  width: 25%;
+}
+#formFooter {
+    background-color: #dce8f1;
+    padding: 25px;
+    text-align: center;
+    margin-bottom: 5em;
+}
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}

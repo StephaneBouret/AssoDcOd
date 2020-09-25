@@ -1,0 +1,357 @@
+<main id="main">
+    <header>
+        <div class="siteCache" id="siteCache"></div>
+        <div class="buttonMenu" id="buttonMenu">
+            <div id="hide-menu" class="btn-header">
+                <span>
+                    <a href="#" id="sidebarCollapse" data-action="toggleMenu" title="Aggrandir le menu">
+                        <i class="fa fa-reorder"></i>
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="inner-header {header-css}">
+                <i class="{fa-wrench}"></i>
+                <div class="header-content">
+                    <div class="my-page-title">
+                        {titreFormulaire}</div>
+                </div>
+            </div>
+        </div>
+        <nav id="principal" class="menu">
+            <div id="open-menu" class="btn-header">
+                <span>
+                    <a href="#" id="closedMenu" data-action="toggleMenu" title="Déplier le menu">
+                        <i class="fa fa-arrow-left"></i>
+                        <i class="fa fa-reorder"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="inner-left-pannel">
+                <div class="my-avatar">
+                    <a href="index.php" title="Voir l'association">
+                        <img src="{logo}" class="img-fluid img-circle img-thumbnail" alt="logo">
+                    </a>
+                </div>
+                <div class="my-moving-parts">
+                    <div class="my-param-content"></div>
+                    <div class="my-normal-content">
+                        <div class="my-search-field">
+                            <div class="">
+                                <div class="">
+                                    <form method="POST" name="member-filter" class="member-filters"
+                                        action="index.php?controller=adherent&action=detailMember" id="member-filter">
+                                        <div class="">
+                                            <div class="row my-form-element-container">
+                                                <div class="form-element search-button font-family-FA">
+                                                    <input type="submit" name="submit" class="btn btn-primary"
+                                                        value="&#xf002">
+                                                </div>
+                                                <div class="form-element search-field">
+                                                    <div id="search_member" class="form-group">
+                                                        <select id='sel_members' name='sel_members'></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inner-tabs-navigation" data-active="menu">
+                            <div class="onglets" data-onglet="menu" title="Ouvrir le menu de navigation">
+                                Navigation </div>
+                            <div class="onglets" data-onglet="account" title="Voir mon compte">
+                                Mon compte </div>
+                        </div>
+                        <div class="inner-tabs">
+                            <div class="account-tab">
+
+                                <div class="parameters-opener" title="Ouvrir mes paramètres">
+                                    <a href="{account}" class="btn btn-labeled btn-primary"
+                                        style="margin-top:9px; margin-right:9px">
+                                        <span class="btn-label" style="font-size: 13px;font-weight: 900;">
+                                            <i class="fa falock fa-cog"></i></span>
+                                        <span class="title">Paramètres du compte</span>
+                                    </a>
+                                </div>
+                                <div class="logout-opener" title="Ouvrir mes paramètres">
+                                    <a href="{logout}" class="btn btn-labeled btn-danger confirm"
+                                        data-callback="confirmLogoutCallback" title="Déconnexion"
+                                        data-confirm="{&quot;title&quot;:&quot;D\u00e9connexion&quot;,&quot;content&quot;:&quot;Vous pouvez am\u00e9liorer votre s\u00e9curit\u00e9 apr\u00e8s vous \u00eatre d\u00e9connect\u00e9 en fermant votre navigateur.&quot;,&quot;yes_button_text&quot;:&quot;Oui&quot;,&quot;no_button_text&quot;:&quot;Non&quot;}"
+                                        style="margin-top:9px; margin-right:9px">
+                                        <span class="btn-label" style="font-size: 13px;font-weight: 900;">
+                                            <i class="fa fa-sign-out"></i></span>
+                                        <span class="title">Déconnexion</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="menu-tab">
+                                <nav class="menu-principal">
+                                    <ul class="menu-principal-list">
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Tableau de bord" href="index.php">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-dashboard fa-xs"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Tableau de bord </span>
+                                            </a>
+                                        </li>
+                                        <li {activeAdd}>
+                                            <a data-dl-view="true" data-dl-title="Paramétrage de l'association"
+                                                href="{actionParamAssoc}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-cog"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Paramétrage de l'association</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Ajouter un adhérent"
+                                                href="{actionAddMembers}" class="show-if-mobile">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Ajouter un adhérent </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Liste adhérents"
+                                                href="{actionListMembers}">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-users"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Liste des adhérents </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Ajouter un utilisateur"
+                                                href="{actionAddUsers}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-toolbox"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Ajouter un utilisateur </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Gérer vos dons"
+                                                href="{actionAddDonations}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-gifts"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Gérer vos dons </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Créer une campagne"
+                                                href="{actionCreateCampaign}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-globe-europe"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Créer une campagne </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Consulter vos documents"
+                                                href="{actionReadDocuments}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-atlas"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Consulter vos documents </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Gérer vos news"
+                                                href="{actionCreateNews}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-rss"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Gérez vos news </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Gérer vos groupes"
+                                                href="{actionAddGroupMembers}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-hotel"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Gérez vos groupes </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+        </nav>
+    </header>
+    <div class="container">
+        <h2 class="text-center mt-4 mb-5">{titreFormulaire}</h2>
+        <div class="row">
+            <div class="col-md-12 mb-md-0 mb-5">
+                <form action="index.php?controller=association&action={action}" id="formAdherent" method="POST"
+                    enctype="multipart/form-data">
+                    <div class='row d-flex justify-content-end'>
+                        <div class="col-lg-12 mt-3">
+                            <legend>
+                                <i class="fas fa-file-invoice"></i>Emission de facture
+                            </legend>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-2 col-xs-12 mb-3">
+                            <a href='index.php?controller=association&action={viewPdf}'>
+                                <div id="billButton" class="btn btn-primary text-center m-0 align-middle buttonSmall">
+                                    <span class="align-middle">Aperçu</span></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div class="blockTitle">
+                            <h2>Renseignez les informations ci-dessous</h2>
+                        </div>
+                        <div class="blockContent">
+                            <h3>Votre organisation</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0">
+                                        <label for="AssoName" class="control-label note">Nom sur les documents :</label>
+                                        <input type="text" id="AssoName" name="AssoName" value="{associationName}"
+                                            readonly class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="juridicalStatusSelection" class="form-group">
+                                        <label for='sel_juridical' class="control-label note">Forme juridique :*</label>
+                                        <select id='sel_juridical' name='sel_juridical'>{juridique}</select>
+                                        <span class="help-block">Code INSEE : {codeInsee}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form mb-2">
+                                        <label for="siret" class="control-label note">SIRET :</label>
+                                        <input type="text" id="siret" name="siret" value="{siret}" required
+                                            class="form-control" placeholder="Ex : 123 456 789 00012">
+                                        <span class="errorMsgParams">Le numéro SIRET n'est pas valide</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form mb-2">
+                                        <label for="rna" class="control-label note">RNA :*</label>
+                                        <input type="text" id="rna" name="rna" value="{rna}" required
+                                            class="form-control" placeholder="Ex : W123456789">
+                                        <span class="errorMsgParams">Le numéro RNA n'est pas valide</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0">
+                                        <label for="objetsocial" class="control-label note">Objet social : (300 caractères maximum)*</label>
+                                        <textarea id="objetsocial" name="objetsocial" class="form-control"
+                                            rows="5">{objetsocial}</textarea>
+                                        <span id="alertTextarea"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0">
+                                        <label for="footerdoc" class="control-label note">Ville RCS ou préfecture :*</label>
+                                        <span id="cursorHelp" class="helpButton"><i class="fas fa-question-circle"></i>
+                                            <span id="helpContent" class="helpContentBox">Ce texte sera affiché en bas
+                                                des documents émis</span>
+                                        </span>
+                                        <input type="text" id="footerdoc" name="footerdoc" autocomplete="off" value="{footerdoc}" class="form-control">
+                                        <span class="errorMsgParams">La ville doit être renseignée</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spaceHorizontalTall"></div>
+                            <h3>Vos responsables</h3>
+                            <div class="row">
+                                <div id="searchBoardMember" class="col-md-6" {searchBoardMemberHidden}>
+                                    <div id="boardMemberSelection" class="form-group">
+                                        <label for='sel_boardMember' class="control-label note">Rechercher un membre du
+                                            bureau :</label>
+                                        <select id='sel_boardMember' name='sel_boardMember'>{boardMember}</select>
+                                    </div>
+                                </div>
+                                <div id="boardReal" class="col-md-6" {boardRealHidden}>
+                                    <div class="md-form mb-2">
+                                        <label for="boardReal" class="control-label note">Signataire actuel :</label>
+                                        <input type="text" id="boardReal" name="boardReal" class="form-control"
+                                            value="{boardReal}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="boardFirstName" class="col-md-6">
+                                    <div class="md-form mb-2">
+                                        <label for="boardMemberFirstname" class="control-label note">Prénom :</label>
+                                        <input type="text" id="boardMemberFirstname" name="boardMemberFirstname"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div id="boardName" class="col-md-6">
+                                    <div class="md-form mb-2">
+                                        <label for="boardMemberName" class="control-label note">Nom :</label>
+                                        <input type="text" id="boardMemberName" name="boardMemberName"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div id="boardFunction" class="col-md-6">
+                                    <div class="md-form mb-2">
+                                        <label for="boardMemberFonction" class="control-label note">Fonction :</label>
+                                        <input type="text" id="boardMemberFonction" name="boardMemberFonction"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div id="boardMemberResetButton" class="col-md-12 d-flex">
+                                    <span class="valignMiddle ml-auto text-center">Supprimer le membre du bureau et en
+                                        saisir un
+                                        autre</span>
+                                </div>
+                            </div>
+                            <div class="spaceHorizontalTall"></div>
+                            <h3><i class="fas fa-signature"></i> Signature</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex flex-wrap smart-form">
+                                        <label for="photo"
+                                            class="col-md-2 control-label note padding-top-10 text-lg-right">Importez
+                                            votre
+                                            signature.</label>
+                                        <div class="col-lg-6 col-md-7">
+                                            <div class="input-file-container">
+                                                <input type="file" class="form-control-file" id="photo" name="photo"
+                                                    aria-describedby="photo">
+                                                <div class="button-file">Parcourir</div>
+                                                <label for="avatar" class="input-file-trigger">Choisir votre signature
+                                                </label>
+                                                <small class="show">Taille maximum : 2 Mo, type de fichier : .jpeg,
+                                                    .png</small>
+                                            </div>
+                                            <p class="file-return"></p>
+                                            <img src='{signature}' id="photoTemplate" class="media-object img-circle"
+                                                width="65px" style="height:auto;text-align:center;" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset class="text-center">
+                        <div class="bottom padding-10 actions">
+                            <input type="submit" name="submit" id="submitParamDoc" class="btn btn-primary btn-xs-full" value="Enregistrer">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

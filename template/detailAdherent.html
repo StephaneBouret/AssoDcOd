@@ -1,0 +1,331 @@
+<main id="main">
+    <header>
+        <div class="siteCache" id="siteCache"></div>
+        <div class="buttonMenu" id="buttonMenu">
+            <div id="hide-menu" class="btn-header">
+                <span>
+                    <a href="#" id="sidebarCollapse" data-action="toggleMenu" title="Aggrandir le menu">
+                        <i class="fa fa-reorder"></i>
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="inner-header {header-css}">
+                <div class="detail-name back-gradient" style="bottom:30px;">
+                    <h1>
+                        <span class="bold">
+                            {detail-name}</span>
+                    </h1>
+                    <div class="badgeUser">
+                        {imgBadgeUserOrAdherent}
+                    </div>
+                </div>
+            </div>
+            <div class="avatar-infos">
+                <img src="{photo}" class="img-fluid img-circle img-thumbnail" alt="photo/avatar">
+                <div class="hide-on-menu">
+                    <div class="reveal-on-hover">
+                        <i class="fa fa-info"></i>
+                    </div>
+                </div>
+                <div class="reveal-on-click">
+                    <div style="margin-top:20px;" class="row">
+                        <div class="col-md-12 col-sm-3 hidden-xs">
+                            <dl>
+                                <dt>{labelFunctionAssociation}</dt>
+                                <dd>{functionAssociation}</dd>
+                                <dt>Statut associatif :</dt>
+                                <dd>{statutAssociation}</dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-12 col-sm-9">
+                            <dl>
+                                <dt>E-mail :</dt>
+                                <dd>{email}</dd>
+                                <dt>Téléphone :</dt>
+                                <dd>{telephone}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav id="principal" class="menu">
+            <div id="open-menu" class="btn-header">
+                <span>
+                    <a href="#" id="closedMenu" data-action="toggleMenu" title="Déplier le menu">
+                        <i class="fa fa-arrow-left"></i>
+                        <i class="fa fa-reorder"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="inner-left-pannel">
+                <div class="my-avatar">
+                    <a href="#" title="Voir l'association">
+                        <img src="{logoPrincipal}" class="img-fluid img-circle img-thumbnail" alt="logo">
+                    </a>
+                </div>
+                <div class="my-moving-parts">
+                    <div class="my-param-content"></div>
+                    <div class="my-normal-content">
+                        <div class="my-search-field" {hiddenSearchField}>
+                            <div class="">
+                                <div class="">
+                                    <form method="POST" name="member-filter" class="member-filters"
+                                        action="index.php?controller=adherent&action=detailMember" id="member-filter">
+                                        <div class="">
+                                            <div class="row my-form-element-container">
+                                                <div class="form-element search-button font-family-FA">
+                                                    <input type="submit" name="submit" class="btn btn-primary"
+                                                        value="&#xf002">
+                                                </div>
+                                                <div class="form-element search-field">
+                                                    <div id="search_member" class="form-group">
+                                                        <select id='sel_members' name='sel_members'></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inner-tabs-navigation" data-active="menu">
+                            <div class="onglets" data-onglet="menu" title="Ouvrir le menu de navigation">
+                                Navigation </div>
+                            <div class="onglets" data-onglet="account" title="Voir mon compte">
+                                Mon compte </div>
+                        </div>
+                        <div class="inner-tabs">
+                            <div class="account-tab">
+
+                                <div class="parameters-opener" title="Ouvrir mes paramètres">
+                                    <a href="{account}" class="btn btn-labeled btn-primary"
+                                        style="margin-top:9px; margin-right:9px">
+                                        <span class="btn-label" style="font-size: 13px;font-weight: 900;">
+                                            <i class="fa falock fa-cog"></i></span>
+                                        <span class="title">Paramètres du compte</span>
+                                    </a>
+                                </div>
+                                <div class="logout-opener" title="Ouvrir mes paramètres">
+                                    <a href="{logout}" class="btn btn-labeled btn-danger confirm"
+                                        data-callback="confirmLogoutCallback" title="Déconnexion"
+                                        data-confirm="{&quot;title&quot;:&quot;D\u00e9connexion&quot;,&quot;content&quot;:&quot;Vous pouvez am\u00e9liorer votre s\u00e9curit\u00e9 apr\u00e8s vous \u00eatre d\u00e9connect\u00e9 en fermant votre navigateur.&quot;,&quot;yes_button_text&quot;:&quot;Oui&quot;,&quot;no_button_text&quot;:&quot;Non&quot;}"
+                                        style="margin-top:9px; margin-right:9px">
+                                        <span class="btn-label" style="font-size: 13px;font-weight: 900;">
+                                            <i class="fa fa-sign-out"></i></span>
+                                        <span class="title">Déconnexion</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="menu-tab">
+                                <nav class="menu-principal">
+                                    <ul class="menu-principal-list">
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Tableau de bord" href="index.php">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-dashboard fa-xs"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Tableau de bord </span>
+                                            </a>
+                                        </li>
+                                        {liParamsAsso}
+                                        {liAddMembers}
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Liste adhérents"
+                                                href="{actionListMembers}">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-users"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Liste des adhérents </span>
+                                            </a>
+                                        </li>
+                                        {liAddUsers}
+                                        {liAddDonations}
+                                        {liCreateCampaign}
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Consulter vos documents"
+                                                href="{actionReadDocuments}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-atlas"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Consulter vos documents </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Gérer vos news"
+                                                href="{actionCreateNews}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-rss"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Gérez vos news </span>
+                                            </a>
+                                        </li>
+                                        {liAddGroup}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+        </nav>
+    </header>
+    <div id="detail-adherent" class="container">
+        {message}
+        <div class="col-md-12 mt-5 mb-5">
+            <div class="d-flex justify-content-start mb-3">
+                <p class="mb-0"><a href="{update}"><button type="button"
+                            class="btn btn-warning text-white btn-head-form"><i class="fas fa-user-edit"></i>
+                            {titleUpdateMember} </button></a></p>
+                <p class="mb-0"><a href="{delete}" id='closeMember'><button type='button'
+                            class='btn btn-danger text-white btn-head-form ml-4' {hiddenButtonSuppMember}><i
+                                class="fas fa-user-slash"></i> {labeDeleteUserOrAdherent}</button></a>
+                </p>
+                <p class="mb-0">
+                    <a href="{cancelled}" id='cancelledMember'>
+                        <button type='button' class='btn btn-info text-white btn-head-form ml-4'
+                            {hiddenButtonCancelledMember}>
+                            <i class="fas fa-eject"></i> Radiation
+                        </button>
+                    </a>
+                </p>
+            </div>
+            <div class="separatorHorizontal"></div>
+            <div {cssActionBackAndActionSend}>
+                <a href="{actionBack}" class="mr-4">
+                    <div id="backButton" class="button align-middle">
+                        <span class="align-middle">Retour à la liste</span>
+                    </div>
+                </a>
+                <a {cssActionBackAndActionSendUser} href="{actionSendReceiptMember}">
+                    <div id="blueButton" class="button align-middle">
+                        <span class="align-middle"><i class="fas fa-receipt"></i> Justificatif de paiement</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class='row'>
+            <div class="col-lg-12 mt-3 mb-3">
+                <legend>
+                    <i class="fa fa-user"></i>{detailUserOrAdherent}
+                </legend>
+            </div>
+        </div>
+        <fieldset class="top">
+            <div class="fieldset-content d-flex flex-wrap">
+                <div class="col-md-6">
+                    <p class="note mb-1">Adresse :</p>
+                    <p class="form-control">{adresse}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="note mb-1">Code Postal :</p>
+                    <p class="form-control">{codepostal}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="note mb-1">Ville :</p>
+                    <p class="form-control">{ville}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="note mb-1">Téléphone :</p>
+                    <p class="form-control">{telephone}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="note mb-1">email :</p>
+                    <p class="form-control">{email}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="note mb-1">Diplôme :</p>
+                    <p class="form-control">{degree}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="note mb-1">Poste occupé :</p>
+                    <p class="form-control mb-0">{job}</p>
+                    <span class="help-block">{family}</span>
+                </div>
+            </div>
+        </fieldset>
+        <div {switchUserOrAdherent} class='row'>
+            <div class="col-lg-12 mt-3 mb-3">
+                <legend>
+                    <i class="fas fa-chart-line"></i>Statut de l'adhérent
+                </legend>
+            </div>
+        </div>
+        <fieldset {switchUserOrAdherent} class="top">
+            <div class="fieldset-content d-flex flex-wrap">
+                <div class="col-md-6">
+                    <p class="note mb-1">Fonction :</p>
+                    <p class="form-control">{fonction}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="note mb-1">Statut :</p>
+                    <p class="form-control">{statut}</p>
+                </div>
+            </div>
+        </fieldset>
+        <div {switchUserOrAdherent} class='row'>
+            <div class="col-lg-12 mt-3 mb-3">
+                <legend>
+                    <i class="far fa-calendar-alt"></i>Ancienneté de l'adhérent
+                </legend>
+            </div>
+        </div>
+        <fieldset {switchUserOrAdherent} class="top">
+            <div class="fieldset-content d-flex flex-wrap">
+                <div class="col-md-6">
+                    <p class="note mb-1">Date d'entrée :</p>
+                    <p class="form-control">{dateEntree}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="note mb-1">Date de sortie :</p>
+                    <p class="form-control">{dateSortie}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="note mb-1">Ancienneté :</p>
+                    <p class="form-control">{anciennete}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="note mb-1">Date de renouvellement :</p>
+                    <p class="form-control">{dateRenewal}</p>
+                </div>
+            </div>
+        </fieldset>
+        <div {switchUserOrAdherent} class='row'>
+            <div class="col-lg-12 mt-3 mb-3">
+                <legend>
+                    <i class="fas fa-euro-sign"></i>Cotisations de l'adhérent
+                </legend>
+            </div>
+        </div>
+        <fieldset {switchUserOrAdherent} class="top">
+            <div class="fieldset-content d-flex flex-wrap">
+                <div class="col-md-6">
+                    <p class="note mb-1">Cotisations :</p>
+                    <p class="form-control">{cotisations}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="note mb-1">Mode de réglement :</p>
+                    <p class="form-control">{reglement}</p>
+                </div>
+            </div>
+        </fieldset>
+        <div {switchAdherentOrUser} class="row">
+            <div class="col-lg-12 mt-3 mb-3">
+                <legend>
+                    <i class="fas fa-users-crown"></i>Groupe d'Adhérent
+                </legend>
+            </div>
+        </div>
+        <fieldset {switchAdherentOrUser} class="top">
+            <div class="fieldset-content d-flex flex-wrap">
+                <div class="col-md-6">
+                    <p class="note mb-1">Groupe :</p>
+                    <p class="form-control">{groupeAdherent}</p>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    </div>
+</main>

@@ -1,0 +1,190 @@
+<main id="main">
+    <header>
+        <div class="siteCache" id="siteCache"></div>
+        <div class="buttonMenu" id="buttonMenu">
+            <div id="hide-menu" class="btn-header">
+                <span>
+                    <a href="#" id="sidebarCollapse" data-action="toggleMenu" title="Aggrandir le menu">
+                        <i class="fa fa-reorder"></i>
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="inner-header ">
+                <i class="pres fa fa-star"></i>
+                <div class="header-content">
+                    <div class="my-page-title">
+                        Tableau de bord</div>
+                </div>
+            </div>
+        </div>
+        <nav id="principal" class="menu">
+            <div id="open-menu" class="btn-header">
+                <span>
+                    <a href="#" id="closedMenu" data-action="toggleMenu" title="Déplier le menu">
+                        <i class="fa fa-arrow-left"></i>
+                        <i class="fa fa-reorder"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="inner-left-pannel">
+                <div class="my-avatar">
+                    <a href="#" title="Voir l'association">
+                        <img src="{photo}" class="img-fluid img-circle img-thumbnail" alt="logo">
+                    </a>
+                </div>
+                <div class="my-moving-parts">
+                    <div class="my-param-content"></div>
+                    <div class="my-normal-content">
+                        <div class="inner-tabs-navigation" data-active="menu">
+                            <div class="onglets" data-onglet="menu" title="Ouvrir le menu de navigation">
+                                Navigation </div>
+                            <div class="onglets" data-onglet="account" title="Voir mon compte">
+                                Mon compte </div>
+                        </div>
+                        <div class="inner-tabs">
+                            <div class="account-tab">
+
+                                <div class="parameters-opener" title="Ouvrir mes paramètres">
+                                    <a href="{account}" class="btn btn-labeled btn-primary"
+                                        style="margin-top:9px; margin-right:9px">
+                                        <span class="btn-label" style="font-size: 13px;font-weight: 900;">
+                                            <i class="fa falock fa-cog"></i></span>
+                                        <span class="title">Paramètres du compte</span>
+                                    </a>
+                                </div>
+                                <div class="logout-opener" title="Ouvrir mes paramètres">
+                                    <a href="{logout}" class="btn btn-labeled btn-danger confirm"
+                                        data-callback="confirmLogoutCallback" title="Déconnexion"
+                                        data-confirm="{&quot;title&quot;:&quot;D\u00e9connexion&quot;,&quot;content&quot;:&quot;Vous pouvez am\u00e9liorer votre s\u00e9curit\u00e9 apr\u00e8s vous \u00eatre d\u00e9connect\u00e9 en fermant votre navigateur.&quot;,&quot;yes_button_text&quot;:&quot;Oui&quot;,&quot;no_button_text&quot;:&quot;Non&quot;}"
+                                        style="margin-top:9px; margin-right:9px">
+                                        <span class="btn-label" style="font-size: 13px;font-weight: 900;">
+                                            <i class="fa fa-sign-out"></i></span>
+                                        <span class="title">Déconnexion</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="menu-tab">
+                                <nav class="menu-principal">
+                                    <ul class="menu-principal-list">
+                                        <li class="active">
+                                            <a data-dl-view="true" data-dl-title="Tableau de bord" href="index.php">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-dashboard fa-xs"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Tableau de bord </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Liste adhérents"
+                                                href="{actionListMembers}">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-users"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Liste des adhérents </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Consulter vos documents"
+                                                href="{actionReadDocuments}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-atlas"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Consulter vos documents </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Gérer vos news"
+                                                href="{actionCreateNews}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-rss"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Gérez vos news </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Gérer vos groupes"
+                                                href="{actionAddGroupMembers}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-hotel"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Gérez vos groupes </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+        </nav>
+    </header>
+    <div class="container">
+        <h2 class="text-center mt-4 mb-5">Bienvenue {adminFirstname}</h2>
+        {message}
+        <div class="row mt-5">
+            <div class="mb-4 col-xl-3 col-md-6 col-sm-12">
+                <div class="card thirdEltDashboard" style="height: 350px;">
+                    <div class="card-content">
+                        <div class="iconDashboard"><i class="fas fa-users"></i></div>
+                        <div class="card-body">
+                            <h4 class="card-title title-dashboard">Liste des adhérents</h4>
+                            <p class="text-center mt-4">
+                                <a href="{actionListMembers}" class="btn btn-outline-amber">C'est parti !</a>
+                            </p>
+                            <p class="card-text text-center text-dashboard">{descListMembers}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 col-xl-3 col-md-6 col-sm-12">
+                <div class="card firstEltDashboard" style="height: 350px;">
+                    <div class="card-content">
+                        <div class="iconDashboard"><i class="fas fa-atlas"></i></div>
+                        <div class="card-body">
+                            <h4 class="card-title title-dashboard">Consulter les documents</h4>
+                            <p class="text-center mt-4">
+                                <a href="{actionReadDocuments}" class="btn btn-outline-amber">C'est parti !</a>
+                            </p>
+                            <p class="card-text text-center text-dashboard">{descDocs}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 col-xl-3 col-md-6 col-sm-12">
+                <div class="card secondEltDashboard" style="height: 350px;">
+                    <div class="card-content">
+                        <div class="iconDashboard"><i class="fas fa-rss"></i></div>
+                        <div class="card-body">
+                            <h4 class="card-title title-dashboard">{titleNews}</h4>
+                            <p class="text-center mt-4">
+                                <a href="{actionCreateNews}" class="btn btn-outline-amber">C'est parti !</a>
+                            </p>
+                            <p class="card-text text-center text-dashboard">{descNews}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4 col-xl-3 col-md-6 col-sm-12">
+                <div class="card firstEltDashboard" style="height: 350px;">
+                    <div class="card-content">
+                        <div class="iconDashboard"><i class="fas fa-hotel"></i></div>
+                        <div class="card-body">
+                            <h4 class="card-title title-dashboard">Consulter les groupes</h4>
+                            <p class="text-center mt-4">
+                                <a href="{actionAddGroupMembers}" class="btn btn-outline-amber">C'est parti !</a>
+                            </p>
+                            <p class="card-text text-center text-dashboard">Consulter les groupes d'adhérent
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

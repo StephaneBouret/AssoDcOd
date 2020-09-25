@@ -1,0 +1,240 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table: cotisation
+#------------------------------------------------------------
+
+CREATE TABLE cotisation(
+        id                  Int  Auto_increment  NOT NULL ,
+        montant_cotisation  Decimal (15,2) NOT NULL ,
+        libelle             Varchar (255) NOT NULL ,
+        debutDateCotisation Date ,
+        finDateCotisation   Date ,
+        dureeMois           Int NOT NULL ,
+        montantReduction    Varchar (255) NOT NULL ,
+        montantBrut         Decimal (15,2) NOT NULL
+	,CONSTRAINT cotisation_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: fonction
+#------------------------------------------------------------
+
+CREATE TABLE fonction(
+        id       Int  Auto_increment  NOT NULL ,
+        fonction Varchar (255) NOT NULL
+	,CONSTRAINT fonction_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: statut
+#------------------------------------------------------------
+
+CREATE TABLE statut(
+        id     Int  Auto_increment  NOT NULL ,
+        statut Varchar (255) NOT NULL
+	,CONSTRAINT statut_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: reglement
+#------------------------------------------------------------
+
+CREATE TABLE reglement(
+        id             Int  Auto_increment  NOT NULL ,
+        mode_reglement Varchar (50) NOT NULL
+	,CONSTRAINT reglement_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: roles
+#------------------------------------------------------------
+
+CREATE TABLE roles(
+        id    Int  Auto_increment  NOT NULL ,
+        nom   Varchar (255) NOT NULL ,
+        slug  Varchar (255) NOT NULL ,
+        level Int NOT NULL
+	,CONSTRAINT roles_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: jobs
+#------------------------------------------------------------
+
+CREATE TABLE jobs(
+        id     Int  Auto_increment  NOT NULL ,
+        name   Varchar (255) NOT NULL ,
+        family Varchar (255) NOT NULL
+	,CONSTRAINT jobs_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: adherent
+#------------------------------------------------------------
+
+CREATE TABLE adherent(
+        id                  Int  Auto_increment  NOT NULL ,
+        prenom              Varchar (255) NOT NULL ,
+        nom                 Varchar (255) NOT NULL ,
+        sexe                Varchar (2) NOT NULL ,
+        adresse             Varchar (255) NOT NULL ,
+        CP                  Varchar (5) NOT NULL ,
+        ville               Varchar (255) NOT NULL ,
+        telephone           Varchar (255) NOT NULL ,
+        email               Varchar (255) NOT NULL ,
+        degree              Varchar (255) ,
+        avatar              Varchar (255) NOT NULL ,
+        date_entree         Date ,
+        date_sortie         Date ,
+        date_renouvellement Date ,
+        password            Varchar (255) ,
+        remember_token      Varchar (255) ,
+        confirmation_token  Varchar (255) ,
+        confirmed_at        Datetime ,
+        reset_token         Varchar (255) ,
+        reset_at            Datetime ,
+        id_cotisation       Int NOT NULL ,
+        id_fonction         Int NOT NULL ,
+        id_statut           Int NOT NULL ,
+        id_reglement        Int NOT NULL ,
+        id_roles            Int NOT NULL ,
+        id_jobs             Int NOT NULL
+	,CONSTRAINT adherent_PK PRIMARY KEY (id)
+
+	,CONSTRAINT adherent_cotisation_FK FOREIGN KEY (id_cotisation) REFERENCES cotisation(id)
+	,CONSTRAINT adherent_fonction0_FK FOREIGN KEY (id_fonction) REFERENCES fonction(id)
+	,CONSTRAINT adherent_statut1_FK FOREIGN KEY (id_statut) REFERENCES statut(id)
+	,CONSTRAINT adherent_reglement2_FK FOREIGN KEY (id_reglement) REFERENCES reglement(id)
+	,CONSTRAINT adherent_roles3_FK FOREIGN KEY (id_roles) REFERENCES roles(id)
+	,CONSTRAINT adherent_jobs4_FK FOREIGN KEY (id_jobs) REFERENCES jobs(id)
+)ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Table: recufiscal
+#------------------------------------------------------------
+
+CREATE TABLE recufiscal(
+        id   Int  Auto_increment  NOT NULL ,
+        type Varchar (255) NOT NULL
+	,CONSTRAINT recufiscal_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: don
+#------------------------------------------------------------
+
+CREATE TABLE don(
+        id            Int  Auto_increment  NOT NULL ,
+        numDon        Varchar (255) NOT NULL ,
+        montant_don   Decimal (15,3) NOT NULL ,
+        date_don      Date NOT NULL ,
+        id_adherent   Int NOT NULL ,
+        id_reglement  Int NOT NULL ,
+        id_recufiscal Int NOT NULL
+	,CONSTRAINT don_PK PRIMARY KEY (id)
+
+	,CONSTRAINT don_adherent_FK FOREIGN KEY (id_adherent) REFERENCES adherent(id)
+	,CONSTRAINT don_reglement0_FK FOREIGN KEY (id_reglement) REFERENCES reglement(id)
+	,CONSTRAINT don_recufiscal1_FK FOREIGN KEY (id_recufiscal) REFERENCES recufiscal(id)
+
+#------------------------------------------------------------
+# Table: forme_juridique
+#------------------------------------------------------------
+
+CREATE TABLE forme_juridique(
+        id      Int  Auto_increment  NOT NULL ,
+        libelle Varchar (255) NOT NULL ,
+        code    Int NOT NULL
+	,CONSTRAINT forme_juridique_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: association
+#------------------------------------------------------------
+
+CREATE TABLE association(
+        id                 Int  Auto_increment  NOT NULL ,
+        nom                Varchar (255) NOT NULL ,
+        adresse            Varchar (255) NOT NULL ,
+        CP                 Varchar (5) NOT NULL ,
+        ville              Varchar (255) NOT NULL ,
+        telephone          Varchar (255) NOT NULL ,
+        email              Varchar (255) NOT NULL ,
+        siret              Varchar (14) NOT NULL ,
+        rna                Varchar (10) NOT NULL ,
+        logo               Varchar (255) NOT NULL ,
+        linkedin           Varchar (255) NOT NULL ,
+        twitter            Varchar (255) NOT NULL ,
+        facebook           Varchar (255) NOT NULL ,
+        site               Varchar (255) NOT NULL ,
+        objetsocial        Text NOT NULL ,
+        footerdoc          Text NOT NULL ,
+        prenomSign         Varchar (255) NOT NULL ,
+        nomSign            Varchar (255) NOT NULL ,
+        fonctionSign       Varchar (255) NOT NULL ,
+        signature          Varchar (255) NOT NULL ,
+        sel_boardMember    Varchar (10) NOT NULL ,
+        id_forme_juridique Int NOT NULL
+	,CONSTRAINT association_PK PRIMARY KEY (id)
+
+	,CONSTRAINT association_forme_juridique_FK FOREIGN KEY (id_forme_juridique) REFERENCES forme_juridique(id)
+)ENGINE=InnoDB;
+
+#------------------------------------------------------------
+# Table: dossierDoc
+#------------------------------------------------------------
+
+CREATE TABLE dossierDoc(
+        id             Int  Auto_increment  NOT NULL ,
+        nomDossier     Varchar (255) NOT NULL ,
+        prenomAuteur   Varchar (255) NOT NULL ,
+        nomAuteur      Varchar (255) NOT NULL ,
+        fonctionAuteur Varchar (255) NOT NULL ,
+        is_visible     Varchar (1) NOT NULL
+	,CONSTRAINT dossierDoc_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: document
+#------------------------------------------------------------
+
+CREATE TABLE document(
+        id             Int  Auto_increment  NOT NULL ,
+        nom            Varchar (255) NOT NULL ,
+        dateCreation   Date ,
+        description    Varchar (255) NOT NULL ,
+        typeDoc        Varchar (255) NOT NULL ,
+        cheminDocument Varchar (255) NOT NULL ,
+        is_visible     TinyINT NOT NULL ,
+        id_dossierDoc  Int NOT NULL
+	,CONSTRAINT document_PK PRIMARY KEY (id)
+
+	,CONSTRAINT document_dossierDoc_FK FOREIGN KEY (id_dossierDoc) REFERENCES dossierDoc(id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: news
+#------------------------------------------------------------
+
+CREATE TABLE news(
+        id           Int  Auto_increment  NOT NULL ,
+        image        Varchar (255) NOT NULL ,
+        titre        Varchar (255) NOT NULL ,
+        contenu      Mediumtext NOT NULL ,
+        dateCreation Date NOT NULL
+	,CONSTRAINT news_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;

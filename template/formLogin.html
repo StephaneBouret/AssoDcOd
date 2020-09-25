@@ -1,0 +1,48 @@
+<div class="content login">
+    <div class="title">Se connecter</div>
+    {message}
+    <div class="row">
+        <form action="index.php?controller=security&action={action}" autocomplete="off" id="form-login" method="post"
+        class="form-login">
+        <div class="col-md-10 offset-md-1 mt-3">
+            <div class="form-group mt-4 mb-0">
+                <div class="effect input-effect">
+                    <input type="email" name="login" id="login"
+                        class="form-control form-register effect-17 has-content" required="" placeholder="" autocomplete="off">
+                    <label>Votre e-mail</label>
+                    <span class="focus-border"></span>
+                    <div class="icon-mail icon-register"><i class="fas fa-envelope"></i></div>
+                </div>
+            </div>
+            <div class="form-group mt-4 mb-0">
+                <div class="effect input-effect">
+                    <input type="password" name="password" id="passwordLogin"
+                        class="form-control form-register effect-17 has-content" required="" placeholder="" autocomplete="off">
+                    <label>Votre mot de passe</label>
+                    <span class="focus-border"></span>
+                    <div class="icon-eye-hide icon-register icon-eye"></div>
+                </div>
+            </div>
+            <div class="row mt-3 d-flex justify-content-end">
+                <div class="col-md-6 text-left">
+                    <label class="checkboxRemember" for="remember">
+                        <input type="checkbox" name="remember" id="remember" value="1"
+                            class="custom-checkboxRemember">
+                        <span class="icons">
+                            <span class="icon-unchecked"></span>
+                            <span class="icon-checked"></span>
+                        </span>
+                        <span for="remember" class="remember font-weight-normal font-m">Se souvenir de moi</span>
+                    </label>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="{forgotPassword}" class="blue-link font-m">Mot de passe oublié ?</a>
+                </div>
+            </div>
+            <div class="form-group text-center mt-4">
+                <input type="submit" id="sendLogin" class="bt-pink mb-2" value="Se connecter">
+            </div>
+        </div>
+    </form>
+    </div>
+</div>

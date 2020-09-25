@@ -1,0 +1,374 @@
+<main id="main">
+    <header>
+        <div class="siteCache" id="siteCache"></div>
+        <div class="buttonMenu" id="buttonMenu">
+            <div id="hide-menu" class="btn-header">
+                <span>
+                    <a href="#" id="sidebarCollapse" data-action="toggleMenu" title="Aggrandir le menu">
+                        <i class="fa fa-reorder"></i>
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="inner-header {header-css}">
+                <i class="{fa-toolbox}"></i>
+                <div class="header-content">
+                    <div class="my-page-title">
+                        {titreFormulaire}</div>
+                </div>
+            </div>
+        </div>
+        <nav id="principal" class="menu">
+            <div id="open-menu" class="btn-header">
+                <span>
+                    <a href="#" id="closedMenu" data-action="toggleMenu" title="Déplier le menu">
+                        <i class="fa fa-arrow-left"></i>
+                        <i class="fa fa-reorder"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="inner-left-pannel">
+                <div class="my-avatar">
+                    <a href="index.php" title="Voir l'association">
+                        <img src="{logo}" class="img-fluid img-circle img-thumbnail" alt="logo">
+                    </a>
+                </div>
+                <div class="my-moving-parts">
+                    <div class="my-param-content"></div>
+                    <div class="my-normal-content">
+                        <div class="my-search-field">
+                            <div class="">
+                                <div class="">
+                                    <form method="POST" name="member-filter" class="member-filters"
+                                        action="index.php?controller=adherent&action=detailMember" id="member-filter">
+                                        <div class="">
+                                            <div class="row my-form-element-container">
+                                                <div class="form-element search-button font-family-FA">
+                                                    <input type="submit" name="submit" class="btn btn-primary"
+                                                        value="&#xf002">
+                                                </div>
+                                                <div class="form-element search-field">
+                                                    <div id="search_member" class="form-group">
+                                                        <select id='sel_members' name='sel_members'></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inner-tabs-navigation" data-active="menu">
+                            <div class="onglets" data-onglet="menu" title="Ouvrir le menu de navigation">
+                                Navigation </div>
+                            <div class="onglets" data-onglet="account" title="Voir mon compte">
+                                Mon compte </div>
+                        </div>
+                        <div class="inner-tabs">
+                            <div class="account-tab">
+
+                                <div class="parameters-opener" title="Ouvrir mes paramètres">
+                                    <a href="{account}" class="btn btn-labeled btn-primary"
+                                        style="margin-top:9px; margin-right:9px">
+                                        <span class="btn-label" style="font-size: 13px;font-weight: 900;">
+                                            <i class="fa falock fa-cog"></i></span>
+                                        <span class="title">Paramètres du compte</span>
+                                    </a>
+                                </div>
+                                <div class="logout-opener" title="Ouvrir mes paramètres">
+                                    <a href="{logout}" class="btn btn-labeled btn-danger confirm"
+                                        data-callback="confirmLogoutCallback" title="Déconnexion"
+                                        data-confirm="{&quot;title&quot;:&quot;D\u00e9connexion&quot;,&quot;content&quot;:&quot;Vous pouvez am\u00e9liorer votre s\u00e9curit\u00e9 apr\u00e8s vous \u00eatre d\u00e9connect\u00e9 en fermant votre navigateur.&quot;,&quot;yes_button_text&quot;:&quot;Oui&quot;,&quot;no_button_text&quot;:&quot;Non&quot;}"
+                                        style="margin-top:9px; margin-right:9px">
+                                        <span class="btn-label" style="font-size: 13px;font-weight: 900;">
+                                            <i class="fa fa-sign-out"></i></span>
+                                        <span class="title">Déconnexion</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="menu-tab">
+                                <nav class="menu-principal">
+                                    <ul class="menu-principal-list">
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Tableau de bord" href="index.php">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-dashboard fa-xs"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Tableau de bord </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Paramétrage de l'association"
+                                                href="{actionParamAssoc}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-cog"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Paramétrage de l'association</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Ajouter un adhérent"
+                                                href="{actionAddMembers}" class="show-if-mobile">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-plus-circle"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Ajouter un adhérent </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Liste adhérents"
+                                                href="{actionListMembers}">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-users"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Liste des adhérents </span>
+                                            </a>
+                                        </li>
+                                        <li {activeAdd}>
+                                            <a data-dl-view="true" data-dl-title="Ajouter un utilisateur"
+                                                href="{actionAddUsers}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-toolbox"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Ajouter un utilisateur </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Gérer vos dons"
+                                                href="{actionAddDonations}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-gifts"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Gérer vos dons </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Créer une campagne"
+                                                href="{actionCreateCampaign}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-globe-europe"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Créer une campagne </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Consulter vos documents"
+                                                href="{actionReadDocuments}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-atlas"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Consulter vos documents </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Gérer vos news"
+                                                href="{actionCreateNews}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-rss"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Gérez vos news </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Gérer vos groupes"
+                                                href="{actionAddGroupMembers}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-hotel"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Gérez vos groupes </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+        </nav>
+    </header>
+    <div class="container">
+        <h2 class="text-center mt-4 mb-5">{titreFormulaire}</h2>
+        <div {cssActionBackAndActionSend}>
+            <a href="{actionBack}" class="mr-4">
+                <div id="backButton" class="button align-middle">
+                    <span class="align-middle">Retour à la liste</span>
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mb-md-0 mb-5">
+                <div class="row d-flex justify-content-end">
+                    <div class="col-lg-12 mt-3">
+                        <legend id="legendDetailUser">
+                            <i class="fad fa-binoculars"></i>Voir le détail de l'utilisateur
+                        </legend>
+                    </div>
+                </div>
+                <div class='p-2 bd-highlight sendMessage'>
+                    <a href='{detailUser}'>
+                        <button type='button' class='btn btn-tertiary'><i class='fas fa-eye'></i> Détail de l'utilisateur</button>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-12 mb-md-0 mb-5">
+                <form action="index.php?controller=user&action={actionSendMailForRegister}" id="formAdherent" method="POST">
+                    <input type="hidden" name="id" value="{id}" readonly class="form-control">
+                    <div class='row d-flex justify-content-end'>
+                        <div class="col-lg-12 mt-3">
+                            <legend>
+                                <i class="fas fa-envelope-open-text"></i>Envoyer un mail d'enregistrement à l'application
+                            </legend>
+                        </div>
+                    </div>
+                    <div class='p-2 bd-highlight sendMessage'>
+                        <input type="submit" name="submit" class="btn btn-primary btn-xs-full" value="Envoyer le mail">
+                    </div>
+                </form>
+                <form action="index.php?controller=user&action={action}" id="formAdherent" method="POST"
+                    enctype="multipart/form-data">
+                    <input type="hidden" id="id" name="id" value="{id}" readonly class="form-control">
+                    <div class='row d-flex justify-content-end'>
+                        <div class="col-lg-12 mt-3">
+                            <legend>
+                                <i class="fas fa-user-shield"></i>Droits d'accès de {prenomUser} {nomUser}
+                            </legend>
+                        </div>
+                    </div>
+                    <div class="editWrapperUSer">
+                        <div class="blockTitle">
+                            <h2>Cochez les droits d'accès</h2>
+                        </div>
+                        <div class="blockContent">
+                            <h3>L'utilisateur sera considéré comme :</h3>
+                            <div class="row mt-8 mb-8">
+                                <div class="col-md-6">
+                                    <label class="radio" for="rolesUserAdmin"><input
+                                            type="radio" name="rolesUser"
+                                            id="rolesUserAdmin" value="1"
+                                            class="custom-radio" {checkedAdmin}><span class="icons"><span
+                                                class="icon-unchecked"></span><span
+                                                class="icon-checked"></span></span><span
+                                            id="rolesUserLabel">Administrateur</span></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="radio" for="rolesUserMember"><input
+                                            type="radio" name="rolesUser"
+                                            id="rolesUserMember" value="2"
+                                            class="custom-radio" {checkedMember}><span class="icons"><span
+                                                class="icon-unchecked"></span><span
+                                                class="icon-checked"></span></span><span
+                                            id="rolesMemberLabel">Membre</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blockComment">
+                            <div id="rolesUserAdminComment">
+                                <div class="col-md-12 col-sm-12 ">
+                                    <p>A tous les droits dont celui d'ajouter les autres administrateurs.</p>
+                                    <p>Gère l'enregistrement des adhésions et dons.</p>
+                                    <p>A tous les droits sur la partie « Adhérents ». Il peut ajouter, modifier ou supprimer des personnes.</p>
+                                    <p>A tous les droits sur la partie « Communication ». Il peut créer, modifier ou supprimer des documents.</p>
+                                </div>
+                            </div>
+                            <div id="rolesUserMemberComment">
+                                <div class="col-md-12 col-sm-12 ">
+                                    <p>A le droit de voir et de modifier son profil.</p>
+                                    <p>A le droit de consulter ou télécharger des documents.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset class="text-center">
+                        <div class="bottom padding-10 actions">
+                            <input type="submit" name="submit" class="btn btn-primary btn-xs-full" value="Modifier">
+                        </div>
+                    </fieldset>
+                </form>
+                <form action="index.php?controller=user&action={actionQualite}" id="formAdherent" method="POST"
+                enctype="multipart/form-data">
+                <input type="hidden" id="id" name="id" value="{id}" readonly class="form-control">
+                <div class='row d-flex justify-content-end'>
+                    <div class="col-lg-12 mt-3">
+                        <legend>
+                            <i class="fas fa-users-cog"></i>Qualité de {prenomUser} {nomUser}
+                        </legend>
+                    </div>
+                </div>
+                <div class="editWrapperUSer">
+                    <div class="blockTitle">
+                        <h2>Cochez la qualité de l'utilisateur</h2>
+                    </div>
+                    <div class="blockContent">
+                        <h3>L'utilisateur sera considéré comme :</h3>
+                        <div class="row mt-8 mb-8">
+                            <div class="col-md-6">
+                                <label class="radio" for="qualityUserAdherent"><input
+                                        type="radio" name="qualityUser"
+                                        id="qualityUserAdherent" value="1"
+                                        class="custom-radio" {checkedAdherent}><span class="icons"><span
+                                            class="icon-unchecked"></span><span
+                                            class="icon-checked"></span></span><span
+                                        id="qualityAdherentLabel">Adhérent</span></label>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="radio" for="qualityUserUser"><input
+                                        type="radio" name="qualityUser"
+                                        id="qualityUserUser" value="2"
+                                        class="custom-radio" {checkedUser}><span class="icons"><span
+                                            class="icon-unchecked"></span><span
+                                            class="icon-checked"></span></span><span
+                                        id="qualityUserLabel">Utilisateur</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="blockComment">
+                        <div id="qualityUserAdherentComment">
+                            <div class="col-md-12 col-sm-12 ">
+                                <p>L'adhérent de l'association est membre de celle-ci et a payé une cotisation pour adhérer à l'association.</p>
+                                <p>Il participe en cette qualité à la gestion de celle-ci par la participation notamment aux assemblées générales.</p>
+                                <p>L'adhérent peut de ce fait exiger que l'association respecte les engagements pris à son égard dans les statuts.</p>
+                                <p>L'adhérent, profite ainsi à ce titre des services de l'association.</p>
+                            </div>
+                        </div>
+                        <div id="qualityUserUserComment">
+                            <div class="col-md-12 col-sm-12 ">
+                                <p>L'utilisateur ne paye aucune cotisation mais peut participer au fonctionnement ou à l'animation de l'association sans contrepartie.</p>
+                                <p>Il ne peut pas exiger de l'association qu'elle respecte les statuts puisqu'il n'est pas lié  contractuellement avec elle.</p>
+                                <p>Pour autant, un utilisateur peut être adhérent comme il peut ne pas l'être.</p>
+                                <p>Il a accès aux ressources de l'application.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="wrapperGroup" class="editWrapperGroup" {displayIfGroup}>
+                        <div class="blockTitle">
+                            <h2>Cet utilisateur appartient au groupe d'adhérent suivant :</h2>
+                        </div>
+                        <div class="blockContent">
+                            <div class="row mt-8 mb-8">
+                                <div class="col-md-6">
+                                    <p id="labelGroup" class="note mb-1">Groupe d'adhérent :</p>
+                                    <p class="form-control">{groupAdherent}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <fieldset class="text-center">
+                    <div class="bottom padding-10 actions">
+                        <input type="submit" name="submit" class="btn btn-primary btn-xs-full" value="Modifier">
+                    </div>
+                </fieldset>
+            </form>
+            </div>
+        </div>
+    </div>
+</main>

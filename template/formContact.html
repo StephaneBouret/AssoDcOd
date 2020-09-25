@@ -1,0 +1,80 @@
+<main id="main">
+    <div class="container-fluid img-bg-contact" id="bt-action">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 anim-left d-none d-sm-block animated slideInLeft">
+                    <h1 class="black color-white mt-350">Bonjour !</h1>
+                    <p class="color-white">
+                        <span class="font-m">Dites-nous ce que l’on peut faire pour vous.</span>
+                    </p>
+                </div>
+                <div id="formContactApp" class="col-lg-5 col-md-6">
+                    <div class="bg-iframe mt-5">
+                        <div id="contact-form">
+                            <h3 class="black green text-uppercase text-center font-xl mt-3">NOUS SOMMES À VOTRE ÉCOUTE !</h3>
+                            <form class="mt-3" action="{action}" method="POST" autocomplete="off" id="form">
+                                {message}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-3">
+                                            <input type="text" placeholder="Votre prénom*" name="first_name" autocomplete="off" minlength="2" maxlength="100" id="first_name" value="" class="form-control input placeholder" required="required">
+                                            <span class="errorMsgFormAdherent">Le prénom ne doit pas être vide</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-3">
+                                            <input type="text" placeholder="Votre nom*" name="last_name" id="last_name" autocomplete="off" minlength="2" maxlength="100" value="" class="form-control input placeholder" required="required">
+                                            <span class="errorMsgFormAdherent">Le nom ne doit pas être vide</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-2">
+                                            <input type="email" placeholder="Votre email*" name="emailContact" id="emailContact" autocomplete="off" value="" maxlength="100" class="form-control input placeholder" required="required">
+                                            <span class="errorMsgFormAdherent">L'email est au mauvais format</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-2">
+                                            <input type="tel" placeholder="Votre téléphone*" name="phoneContact" id="phoneContact" autocomplete="off" minlength="8" value="" class="form-control input placeholder" required="required">
+                                            <span class="errorMsgFormAdherent">Le téléphone est au mauvais format</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mt-2">
+                                            <select class="custom-select select" name="problem_type" id="problem_type">
+                                                <option value="" disabled="" selected="">Votre demande est d'ordre :</option>
+                                                <option value="admin">Administratif</option>
+                                                <option value="tech">Technique</option>
+                                                <option value="all">Autre</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 mt-3">
+                                    <textarea class="form-control placeholder" required="required" id="messageContact" name="messageContact" rows="6" placeholder="Votre message ..."></textarea>
+                                    <span class="errorMsgFormAdherent">La description ne doit pas être vide</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mt-3">
+                                            <input type="submit" id="submitForContact" value="Envoyer">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="txt-small">Les informations saisies sont exploitées dans le cadre de la demande de contact.
+                                    <a href="#" class="simple-link" target="_blank"> Voir la politique de confidentialité</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

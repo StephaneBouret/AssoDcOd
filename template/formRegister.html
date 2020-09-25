@@ -1,0 +1,89 @@
+<div class="content register">
+    <div class="title">Créer un compte</div>
+    {message}
+    <div id="msg" class="msg-error text-center font-m light animated" style="display: none;">Ces champs ne sont pas
+        remplis correctement.</div>
+    <div class="row">
+        <form action="index.php?controller=security&action={action}" id="form-login" method="post" class="form-login" autocomplete="off">
+            <div class="col-md-10 offset-md-1 mt-3">
+                <!-- <div class="form-group">
+                    <div class="effect input-effect">
+                        <input type="text" name="prenom" id="prenom"
+                            class="form-control form-register effect-17 has-content" required="" value=""
+                            placeholder="">
+                        <label>Votre prénom</label>
+                        <span class="focus-border"></span>
+                        <div class="icon-firstname icon-register"><i class="fas fa-user-circle"></i></div>
+                    </div>
+                </div>
+                <div class="form-group mt-4 mb-0">
+                    <div class="effect input-effect">
+                        <input type="text" name="nom" id="nom" class="form-control form-register effect-17 has-content"
+                            required="" value="" placeholder="">
+                        <label>Votre nom</label>
+                        <span class="focus-border"></span>
+                        <div class="icon-name icon-register"><i class="far fa-user-circle"></i></div>
+                    </div>
+                </div> -->
+                <div class="form-group mt-4 mb-0">
+                    <div class="effect input-effect">
+                        <input type="email" name="email" id="email"
+                            class="form-control form-register effect-17 has-content" required="" placeholder="" autocomplete="off">
+                        <label>Votre e-mail</label>
+                        <span class="focus-border"></span>
+                        <div class="icon-mail icon-register"><i class="fas fa-envelope"></i></div>
+                    </div>
+                </div>
+                <div class="form-group mt-4 mb-0">
+                    <div class="effect input-effect">
+                        <input type="password" name="password" id="password"
+                            class="form-control form-register effect-17 has-content" required="" placeholder="" autocomplete="off">
+                        <label>Votre mot de passe</label>
+                        <span class="focus-border"></span>
+                        <div class="icon-eye-hide icon-register icon-eye"></div>
+                    </div>
+                </div>
+                <div class="pswd_info d-none">
+                    <div class="text-center"><span class="arrow-password"></span></div>
+                    <div class="advice-password">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-password bg-success"
+                                role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <hr>
+                        <p class="mb-0">Votre mot de passe doit contenir au moins :</p>
+                        <ul>
+                            <li>
+                                <span id="letter" class="mr-2 invalid sprite-align"></span>Un caractère en minuscule
+                            </li>
+                            <li>
+                                <span id="capital" class="mr-2 invalid sprite-align"></span>Un caractère en majuscule
+                            </li>
+                            <li>
+                                <span id="special" class="mr-2 invalid sprite-align"></span>Un caractère spécial (!, ?,
+                                $, ", ...) </li>
+                            <li>
+                                <span id="number" class="mr-2 invalid sprite-align"></span>Un chiffre </li>
+                            <li>
+                                <span id="length" class="mr-2 invalid sprite-align"></span>8 caractères </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group mt-4 mb-0">
+                    <div class="effect input-effect">
+                        <input type="password" name="password_confirm" id="password_confirm" data-toggle="popover"
+                            data-placement="bottom" data-content="Veuillez entrer la même valeur de nouveau."
+                            class="form-control check-password form-register effect-17 has-content" required=""
+                            placeholder="" autocomplete="off">
+                        <label>Confirmez votre mot de passe</label>
+                        <span class="focus-border"></span>
+                        <div class="icon-eye-hide icon-register icon-eye"></div>
+                    </div>
+                </div>
+                <div class="form-group text-center mt-4">
+                    <input type="submit" id="send" class="bt-pink mb-2" value="Créer un compte">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

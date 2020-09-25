@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".no-js").removeClass("no-js"),$(window).scroll(function(){100<$(window).scrollTop()?$("#ei_top").fadeIn():$("#ei_top").fadeOut()}),$("#ei_top").click(function(o){return $("html, body").animate({scrollTop:0},800),!1})});
