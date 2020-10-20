@@ -16,21 +16,6 @@ abstract class Model
     const PASSWORD = "";
     const BASE = "associationdcd";
 
-    // const SERVER = "localhost";
-    // const USER = "root";
-    // const PASSWORD = "";
-    // const BASE = "associationdcd";
-
-    // define('SERVER' ,"sqlprive-pc2372-001.privatesql.ha.ovh.net");
-    // define('USER' ,"cefiidev966");
-    // define('PASSWORD' ,"4Lwc5pW3");
-    // define('BASE' ,"cefiidev966");
-
-    // define('SERVER' ,"monorthoyuscbo68.mysql.db");
-    // define('USER' ,"monorthoyuscbo68");
-    // define('PASSWORD' ,"Stephane2209Bouret1968");
-    // define('BASE' ,"monorthoyuscbo68");
-
     protected $connexion;
 
     /**
