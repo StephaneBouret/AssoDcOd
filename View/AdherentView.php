@@ -181,7 +181,7 @@ class AdherentView extends View
             $age = $datetime1->diff($datetime2);
         }
         $anciennete = $age->format('%y année(s), %m mois, %d jours');
-        $this->page .= file_get_contents('template/detailAdherent.html');
+        $this->page .= file_get_contents('template/detailAdherentNew.html');
         $this->page = str_replace('{header-css}', 'detail', $this->page);
         $this->page = str_replace('{actionListMembers}', 'index.php?controller=adherent&action=start', $this->page);
         $this->page = str_replace('{actionReadDocuments}', 'index.php?controller=document&action=listFiles', $this->page);
@@ -234,6 +234,18 @@ class AdherentView extends View
             unset($_SESSION['flash']);
         }
         $this->page = str_replace('{message}', $message, $this->page);
+        /** Modification new template */
+        $backgroundImage = "";
+        $background = $adherent['background'];
+        if ($background == NULL) {
+            $backgroundImage = "img/cover-00.jpg";
+        } else {
+            $backgroundImage = $background;
+        }
+        $this->page = str_replace('{backgroundImage}', $backgroundImage, $this->page);
+        $this->page = str_replace('{action}', 'addBG&id='.$adherent['id_adherent'].'', $this->page);
+        $this->page = str_replace('{connexion}', 'index.php?controller=adherent&action=connexionForm&id='.$adherent['id_adherent'].'', $this->page);
+
         if ($adherent['id_qualite'] == '1') {
             $this->page = str_replace('{labelFunctionAssociation}', 'Fonction :', $this->page);
             $this->page = str_replace('{functionAssociation}', $adherent['fonction'], $this->page);
@@ -260,11 +272,20 @@ class AdherentView extends View
             $this->page = str_replace('{groupeAdherent}', $adherent['nom_groupe'], $this->page);
         }
         if ($adherent['id_roles'] == '1' && $adherent['id_qualite'] == '1') {
-            $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-admin.png" alt="Administrateur" title="Administrateur" class="mt-5 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{detail-role}', 'Administrateur', $this->page);
+            // $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-admin.png" alt="Administrateur" title="Administrateur" class="mt-5 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-admin.png" alt="Administrateur" title="Administrateur" class="mt-1 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{text-role}', 'A tous les droits dont celui d\'ajouter les autres administrateurs.<br>Gère l\'enregistrement des adhésions et dons.<br>Il peut ajouter, modifier ou supprimer les éléments dans l\'application.', $this->page);
         } elseif ($adherent['id_roles'] == '2' && $adherent['id_qualite'] == '1') {
-            $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-member.png" alt="Adhérent" title="Adhérent" class="mt-5 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{detail-role}', 'Adhérent', $this->page);
+            // $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-member.png" alt="Adhérent" title="Adhérent" class="mt-5 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-member.png" alt="Adhérent" title="Adhérent" class="mt-1 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{text-role}', 'A le droit de voir et de modifier son profil.<br>A le droit de consulter ou télécharger des documents.<br>L\'adhérent de l\'association est membre de celle-ci et a payé une cotisation pour adhérer.', $this->page);
         } else {
-            $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-user.png" alt="Utilisateur" title="Utilisateur" class="mt-5 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{detail-role}', 'Utilisateur', $this->page);
+            // $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-user.png" alt="Utilisateur" title="Utilisateur" class="mt-5 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-user.png" alt="Utilisateur" title="Utilisateur" class="mt-1 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{text-role}', 'A le droit de voir et de modifier son profil.<br>A le droit de consulter ou télécharger des documents.<br>L\'utilisateur ne participe ni au fonctionnement de l\'association ni aux délibérations.', $this->page);
         }
         $this->page = str_replace('{detail-name}', $adherent['prenom'] . ' ' . $adherent['nom'], $this->page);
         $this->page = str_replace('{photo}', $adherent['avatar'], $this->page);
@@ -298,22 +319,27 @@ class AdherentView extends View
         $this->page = str_replace('{reglement}', $adherent['mode_reglement'], $this->page);
         if ($_SESSION['user']['id_roles'] == "1" && $adherent['id_qualite'] == "1") {
             $this->page = str_replace('{hiddenButtonSuppMember}', '', $this->page);
+            $this->page = str_replace('{hiddenButtonDropdown}', '', $this->page);
             $this->page = str_replace('{hiddenButtonCancelledMember}', '', $this->page);
-            $this->page = str_replace('{cssActionBackAndActionSend}', 'class="d-flex justify-content-start mb-0"', $this->page);
+            // $this->page = str_replace('{cssActionBackAndActionSend}', 'class="d-flex justify-content-start mb-0"', $this->page);
+            $this->page = str_replace('{cssActionBackAndActionSend}', '', $this->page);
             $this->page = str_replace('{titleUpdateMember}', 'Modifier l\'adhérent', $this->page);
             $this->page = str_replace('{update}', 'index.php?controller=adherent&action=updateForm&id=' . $adherent['id_adherent'] . '', $this->page);
             $this->page = str_replace('{delete}', 'index.php?controller=adherent&action=suppDB&id=' . $adherent['id_adherent'] . '', $this->page);
             $this->page = str_replace('{cancelled}', 'index.php?controller=adherent&action=cancelledMemberForm&id=' . $adherent['id_adherent'] . '', $this->page);
         } elseif ($_SESSION['user']['id_roles'] == "1" && $adherent['id_qualite'] == "2") {
             $this->page = str_replace('{hiddenButtonSuppMember}', '', $this->page);
+            $this->page = str_replace('{hiddenButtonDropdown}', '', $this->page);
             $this->page = str_replace('{hiddenButtonCancelledMember}', '', $this->page);
-            $this->page = str_replace('{cssActionBackAndActionSend}', 'class="d-flex justify-content-start mb-0"', $this->page);
+            // $this->page = str_replace('{cssActionBackAndActionSend}', 'class="d-flex justify-content-start mb-0"', $this->page);
+            $this->page = str_replace('{cssActionBackAndActionSend}', '', $this->page);
             $this->page = str_replace('{titleUpdateMember}', 'Modifier l\'utilisateur', $this->page);
             $this->page = str_replace('{update}', 'index.php?controller=adherent&action=updateForm&id=' . $adherent['id_adherent'] . '', $this->page);
             $this->page = str_replace('{delete}', 'index.php?controller=user&action=suppDBUser&id=' . $adherent['id_adherent'] . '', $this->page);
             $this->page = str_replace('{cancelled}', 'index.php?controller=user&action=cancelledUser&id=' . $adherent['id_adherent'] . '', $this->page);
         } else {
             $this->page = str_replace('{hiddenButtonSuppMember}', 'hidden', $this->page);
+            $this->page = str_replace('{hiddenButtonDropdown}', 'hidden', $this->page);
             $this->page = str_replace('{hiddenButtonCancelledMember}', 'hidden', $this->page);
             $this->page = str_replace('{cssActionBackAndActionSend}', 'hidden', $this->page);
             $this->page = str_replace('{titleUpdateMember}', 'Modifier votre profil', $this->page);
@@ -940,6 +966,154 @@ class AdherentView extends View
         $this->page = str_replace('{activeAdd}', 'class="active"', $this->page);
         $this->page = str_replace('{actionBack}', 'index.php?controller=adherent&action=modal&id='.$adherent['id_adherent'].'', $this->page);
         $this->page = str_replace('{dateSortie}', $adherent['date_sortie'], $this->page);
+        $this->displayPage();
+    }
+
+    /**
+     * Fonction affichage page connexion adherent ou user
+     *
+     * @param [type] $adherent
+     * @param [type] $associationDisplay
+     * @return void
+     */
+    public function modalConnexion($adherent, $associationDisplay)
+    {
+        $this->page .= file_get_contents('template/detailConnexion.html');
+        $this->page = str_replace('{header-css}', 'detail', $this->page);
+        $this->page = str_replace('{actionListMembers}', 'index.php?controller=adherent&action=start', $this->page);
+        $this->page = str_replace('{actionReadDocuments}', 'index.php?controller=document&action=listFiles', $this->page);
+        $this->page = str_replace('{actionCreateNews}', 'index.php?controller=document&action=listFiles', $this->page);
+        $this->page = str_replace('{logout}', 'index.php?controller=security&action=logout', $this->page);
+        if (isset($_SESSION)) {
+            $this->page = str_replace('{account}', 'index.php?controller=adherent&action=modal&id=' . $_SESSION['user']['id'] . '', $this->page);
+        } else {
+            $this->page = str_replace('{account}', '#', $this->page);
+        }
+        if (!empty($_SESSION['user']) && $_SESSION['user']['id_roles'] == "1") {
+            $this->page = str_replace('{hiddenSearchField}', "", $this->page);
+            $this->page = str_replace('{liParamsAsso}', "<li><a data-dl-view='true' data-dl-title='Paramétrage de l'association' href='{actionParamAssoc}'>
+            <span class='icon-container'><i class='fas fa-cog'></i></span><span class='text item'> Paramétrage de l'association</span></a></li>", $this->page);
+            $this->page = str_replace('{liAddMembers}', "<li><a data-dl-view='true' data-dl-title='Ajouter un adhérent' href='{actionAddMembers}' class='show-if-mobile'>
+            <span class='icon-container'><i class='fa fa-plus-circle'></i></span><span class='text item'> Ajouter un adhérent </span></a></li>", $this->page);
+            $this->page = str_replace('{liAddUsers}', "<li><a data-dl-view='true' data-dl-title='Ajouter un utilisateur' href='{actionAddUsers}'>
+            <span class='icon-container'><i class='fas fa-toolbox'></i></span><span class='text item'> Ajouter un utilisateur </span></a></li>", $this->page);
+            $this->page = str_replace('{liCreateCampaign}', "<li><a data-dl-view='true' data-dl-title='Créer une campagne' href='{actionCreateCampaign}'>
+            <span class='icon-container'><i class='fas fa-globe-europe'></i></span><span class='text item'> Créer une campagne </span></a></li>", $this->page);
+            $this->page = str_replace('{liAddDonations}', "<li><a data-dl-view='true' data-dl-title='Gérer vos dons' href='{actionAddDonations}'>
+            <span class='icon-container'><i class='fas fa-gifts'></i></span><span class='text item'> Gérer vos dons </span></a></li>", $this->page);
+            $this->page = str_replace('{liAddGroup}', "<li><a data-dl-view='true' data-dl-title='Gérer vos groupes' href='{actionAddGroupMember}'>
+            <span class='icon-container'><i class='fas fa-hotel'></i></span><span class='text item'> Gérer vos groupes </span></a></li>", $this->page);
+        } else {
+            $this->page = str_replace('{hiddenSearchField}', "hidden", $this->page);
+            $this->page = str_replace('{liParamsAsso}', "", $this->page);
+            $this->page = str_replace('{liAddMembers}', "", $this->page);
+            $this->page = str_replace('{liAddUsers}', "", $this->page);
+            $this->page = str_replace('{liCreateCampaign}', "", $this->page);
+            $this->page = str_replace('{liAddDonations}', "", $this->page);
+            $this->page = str_replace('{liAddGroup}', "", $this->page);
+        }
+        $this->page = str_replace('{actionAddMembers}', 'index.php?controller=adherent&action=addForm', $this->page);
+        $this->page = str_replace('{actionCreateCampaign}', 'index.php?controller=campaign&action=start', $this->page);
+        $this->page = str_replace('{actionParamAssoc}', 'index.php?controller=association&action=start', $this->page);
+        $this->page = str_replace('{actionAddUsers}', 'index.php?controller=user&action=start', $this->page);
+        $this->page = str_replace('{actionAddDonations}', 'index.php?controller=dons&action=start', $this->page);
+        $this->page = str_replace('{actionAddGroupMember}', 'index.php?controller=group&action=listFiles', $this->page);
+        if (empty($associationDisplay['logo'])) {
+            $this->page = str_replace('{logoPrincipal}', 'img/undefined.jpg', $this->page);
+        } else {
+            $this->page = str_replace('{logoPrincipal}', $associationDisplay['logo'], $this->page);
+        }
+        $message = "";
+        if (isset($_SESSION['flash'])) {
+            foreach ($_SESSION['flash'] as $type => $content) {
+                $message = "<div class='alert alert-" . $type . " text-center mb-2 font-m'>" . $content . "</div>";
+            }
+            unset($_SESSION['flash']);
+        }
+        $this->page = str_replace('{message}', $message, $this->page);
+        /** Modification new template */
+        $backgroundImage = "";
+        $background = $adherent['background'];
+        if ($background == NULL) {
+            $backgroundImage = "img/cover-00.jpg";
+        } else {
+            $backgroundImage = $background;
+        }
+        $this->page = str_replace('{backgroundImage}', $backgroundImage, $this->page);
+        $this->page = str_replace('{action}', 'addBG', $this->page);
+        $this->page = str_replace('{connexion}', 'index.php?controller=adherent&action=connexionForm&id='.$adherent['id_adherent'].'', $this->page);
+        $this->page = str_replace('{detailAdherentNew}', 'index.php?controller=adherent&action=modal&id='.$adherent['id_adherent'].'', $this->page);
+        $this->page = str_replace('{actionChangePw}', 'changePW&id='.$adherent['id_adherent'].'', $this->page);
+
+        if ($adherent['id_qualite'] == '1') {
+            $this->page = str_replace('{labelFunctionAssociation}', 'Fonction :', $this->page);
+            $this->page = str_replace('{functionAssociation}', $adherent['fonction'], $this->page);
+            $this->page = str_replace('{statutAssociation}', $adherent['statut'], $this->page);
+            $this->page = str_replace('{actionBack}', 'index.php?controller=adherent&action=start', $this->page);
+            $this->page = str_replace('{labeDeleteUserOrAdherent}', 'Supprimer l\'adhérent', $this->page);
+            $this->page = str_replace('{cssActionBackAndActionSendUser}', '', $this->page);
+            $this->page = str_replace('{actionSendReceiptMember}', 'index.php?controller=adherent&action=pdfReceipt&id=' . $adherent['id_adherent'] . '', $this->page);
+            $this->page = str_replace('{detailUserOrAdherent}', 'Détails de l\'adhérent', $this->page);
+        } else {
+            $this->page = str_replace('{labelFunctionAssociation}', 'Groupe :', $this->page);
+            $this->page = str_replace('{functionAssociation}', $adherent['nom_groupe'], $this->page);
+            $this->page = str_replace('{statutAssociation}', 'Utilisateur', $this->page);
+            $this->page = str_replace('{actionBack}', 'index.php?controller=user&action=start', $this->page);
+            $this->page = str_replace('{labeDeleteUserOrAdherent}', 'Supprimer l\'utilisateur', $this->page);
+            $this->page = str_replace('{cssActionBackAndActionSendUser}', 'hidden', $this->page);
+            $this->page = str_replace('{actionSendReceiptMember}', '', $this->page);
+            $this->page = str_replace('{detailUserOrAdherent}', 'Détails de l\'utilisateur', $this->page);
+        }
+        if ($adherent['id_roles'] == '1' && $adherent['id_qualite'] == '1') {
+            $this->page = str_replace('{detail-role}', 'Administrateur', $this->page);
+            // $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-admin.png" alt="Administrateur" title="Administrateur" class="mt-5 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-admin.png" alt="Administrateur" title="Administrateur" class="mt-1 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{text-role}', 'A tous les droits dont celui d\'ajouter les autres administrateurs.<br>Gère l\'enregistrement des adhésions et dons.<br>Il peut ajouter, modifier ou supprimer les éléments dans l\'application.', $this->page);
+        } elseif ($adherent['id_roles'] == '2' && $adherent['id_qualite'] == '1') {
+            $this->page = str_replace('{detail-role}', 'Adhérent', $this->page);
+            // $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-member.png" alt="Adhérent" title="Adhérent" class="mt-5 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-member.png" alt="Adhérent" title="Adhérent" class="mt-1 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{text-role}', 'A le droit de voir et de modifier son profil.<br>A le droit de consulter ou télécharger des documents.<br>L\'adhérent de l\'association est membre de celle-ci et a payé une cotisation pour adhérer.', $this->page);
+        } else {
+            $this->page = str_replace('{detail-role}', 'Utilisateur', $this->page);
+            // $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-user.png" alt="Utilisateur" title="Utilisateur" class="mt-5 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{imgBadgeUserOrAdherent}', '<img src="img/rocket-user.png" alt="Utilisateur" title="Utilisateur" class="mt-1 mb-2 icon-rocket">', $this->page);
+            $this->page = str_replace('{text-role}', 'A le droit de voir et de modifier son profil.<br>A le droit de consulter ou télécharger des documents.<br>L\'utilisateur ne participe ni au fonctionnement de l\'association ni aux délibérations.', $this->page);
+        }
+        $this->page = str_replace('{detail-name}', $adherent['prenom'] . ' ' . $adherent['nom'], $this->page);
+        $this->page = str_replace('{photo}', $adherent['avatar'], $this->page);
+        $this->page = str_replace('{nom}', $adherent['nom'], $this->page);
+        $this->page = str_replace('{prenom}', $adherent['prenom'], $this->page);
+
+        if ($_SESSION['user']['id_roles'] == "1" && $adherent['id_qualite'] == "1") {
+            $this->page = str_replace('{hiddenButtonSuppMember}', '', $this->page);
+            $this->page = str_replace('{hiddenButtonDropdown}', '', $this->page);
+            $this->page = str_replace('{hiddenButtonCancelledMember}', '', $this->page);
+            // $this->page = str_replace('{cssActionBackAndActionSend}', 'class="d-flex justify-content-start mb-0"', $this->page);
+            $this->page = str_replace('{cssActionBackAndActionSend}', '', $this->page);
+            $this->page = str_replace('{titleUpdateMember}', 'Modifier l\'adhérent', $this->page);
+            $this->page = str_replace('{update}', 'index.php?controller=adherent&action=updateForm&id=' . $adherent['id_adherent'] . '', $this->page);
+            $this->page = str_replace('{delete}', 'index.php?controller=adherent&action=suppDB&id=' . $adherent['id_adherent'] . '', $this->page);
+            $this->page = str_replace('{cancelled}', 'index.php?controller=adherent&action=cancelledMemberForm&id=' . $adherent['id_adherent'] . '', $this->page);
+        } elseif ($_SESSION['user']['id_roles'] == "1" && $adherent['id_qualite'] == "2") {
+            $this->page = str_replace('{hiddenButtonSuppMember}', '', $this->page);
+            $this->page = str_replace('{hiddenButtonDropdown}', '', $this->page);
+            $this->page = str_replace('{hiddenButtonCancelledMember}', '', $this->page);
+            // $this->page = str_replace('{cssActionBackAndActionSend}', 'class="d-flex justify-content-start mb-0"', $this->page);
+            $this->page = str_replace('{cssActionBackAndActionSend}', '', $this->page);
+            $this->page = str_replace('{titleUpdateMember}', 'Modifier l\'utilisateur', $this->page);
+            $this->page = str_replace('{update}', 'index.php?controller=adherent&action=updateForm&id=' . $adherent['id_adherent'] . '', $this->page);
+            $this->page = str_replace('{delete}', 'index.php?controller=user&action=suppDBUser&id=' . $adherent['id_adherent'] . '', $this->page);
+            $this->page = str_replace('{cancelled}', 'index.php?controller=user&action=cancelledUser&id=' . $adherent['id_adherent'] . '', $this->page);
+        } else {
+            $this->page = str_replace('{hiddenButtonSuppMember}', 'hidden', $this->page);
+            $this->page = str_replace('{hiddenButtonDropdown}', 'hidden', $this->page);
+            $this->page = str_replace('{hiddenButtonCancelledMember}', 'hidden', $this->page);
+            $this->page = str_replace('{cssActionBackAndActionSend}', 'hidden', $this->page);
+            $this->page = str_replace('{titleUpdateMember}', 'Modifier votre profil', $this->page);
+            $this->page = str_replace('{update}', 'index.php?controller=adherent&action=updateFormOnlyMember&id=' . $adherent['id_adherent'] . '', $this->page);
+            $this->page = str_replace('{delete}', '', $this->page);
+        }
         $this->displayPage();
     }
 }

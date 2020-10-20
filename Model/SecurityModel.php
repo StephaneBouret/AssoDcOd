@@ -215,4 +215,43 @@ class SecurityModel extends Model {
         }
         return $userReset;
     }
+
+    /**
+     * Fonction obtention du mot de passe par id
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function getPasswordInDB($id)
+    {
+        $requete = $this->connexion->prepare("SELECT password FROM adherent WHERE id = :id");
+        $requete->bindParam(':id', $id);
+        $result = $requete->execute();
+        $passwordInDB = $requete->fetch(PDO::FETCH_ASSOC);
+        return $passwordInDB;
+    }
+
+    /**
+     * Fonction modification du mot de passe en ligne
+     *
+     * @return void
+     */
+    public function changePW()
+    {
+        $id = $_GET['id'];
+        $password = $_POST['password'];
+        $passwordConfirm = $_POST['password_confirm'];
+        $regexCharacterChoice = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)/';
+        if (!empty($password) && preg_match($regexCharacterChoice, $password) && strlen($password) >= 8){
+            if($password == $passwordConfirm){
+                $encryptedPassword = password_hash($password, PASSWORD_BCRYPT);
+                $requete = $this->connexion->prepare("UPDATE adherent
+                SET password = :password
+                WHERE id = :id");
+                $requete->bindParam(':id', $id);
+                $requete->bindParam(':password', $encryptedPassword);
+                $result = $requete->execute();
+            }
+        }
+    }
 }

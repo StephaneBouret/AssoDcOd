@@ -189,10 +189,10 @@ class AdherentModel extends Model
         }
 
         $phone_expr = '/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/';
-
+        
         if (preg_match($phone_expr, $tel) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $requete = $this->connexion->prepare("INSERT INTO adherent
-            VALUES (NULL, :prenom, :nom, :sexe, :adresse, :CP, :ville, :telephone, :email, :degree, :avatar, :date_entree, :date_sortie, :date_renouvellement, NULL, NULL, NULL, NULL, NULL, NULL, :id_jobs, :id_statut, :id_fonction, :id_cotisation, :id_reglement, '2', NULL, '1')");
+            VALUES (NULL, :prenom, :nom, :sexe, :adresse, :CP, :ville, :telephone, :email, :degree, :avatar, NULL, :date_entree, :date_sortie, :date_renouvellement, NULL, NULL, NULL, NULL, NULL, NULL, :id_jobs, :id_statut, :id_fonction, :id_cotisation, :id_reglement, '2', NULL, '1')");
             $requete->bindParam(':prenom', $prenom);
             $requete->bindParam(':nom', $nom);
             $requete->bindParam(':sexe', $sexe);
@@ -332,6 +332,46 @@ class AdherentModel extends Model
         $requete->bindParam(':id_fonction', $fonction);
         $requete->bindParam(':id_cotisation', $cotisation);
         $requete->bindParam(':id_reglement', $reglement);
+        $result = $requete->execute();
+        // var_dump($result);
+        // var_dump($requete->errorInfo());
+    }
+
+    public function updateBG()
+    {
+        $id = $_GET['id'];
+        $maxsize = 2097152;
+        $acceptable = [
+            'image/tif',
+            'image/jpeg',
+            'image/jpg',
+            'image/gif',
+            'image/png'];
+        $backgroundMember = "img/cover-00.jpg";
+
+        if (isset($_FILES['backgroundMember']) && !empty($_FILES['backgroundMember']) && (in_array($_FILES['backgroundMember']['type'], $acceptable)) 
+        && ($_FILES['backgroundMember']['size'] < $maxsize) && ($_FILES['backgroundMember']['size'] != 0)) {
+            $emplacement_temporaire = $_FILES['backgroundMember']['tmp_name'];
+            $nom_fichier = $_FILES['backgroundMember']['name'];
+            $emplacement_destination = 'img/' . $nom_fichier;
+
+            $resultat = move_uploaded_file($emplacement_temporaire, $emplacement_destination);
+            if ($resultat) {
+                $backgroundMember = 'img/' . $nom_fichier;
+            }
+
+            $requete = $this->connexion->prepare("UPDATE adherent SET background=:background WHERE id=:id");
+            $requete->bindParam(':background', $backgroundMember);
+        } else if (isset($_POST['icon']) && !empty($_POST['icon'])) {
+            $backgroundMember = $_POST['icon'];
+            $requete = $this->connexion->prepare("UPDATE adherent SET background=:background WHERE id=:id");
+            $requete->bindParam(':background', $backgroundMember);
+        } else {
+            $backgroundMember = "img/cover-00.jpg";
+            $requete = $this->connexion->prepare("UPDATE adherent SET background=:background WHERE id=:id");
+            $requete->bindParam(':background', $backgroundMember);
+        }
+        $requete->bindParam(':id', $id);
         $result = $requete->execute();
         // var_dump($result);
         // var_dump($requete->errorInfo());

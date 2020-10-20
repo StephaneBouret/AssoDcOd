@@ -729,6 +729,10 @@ $(document).ready(function () {
         $('.reveal-on-click').slideToggle('slow');
     });
 
+    $('#hideMenu').click(function () {
+        $('.reveal-on-click').slideToggle('slow');
+    });
+
     //Hide detail adherent
     $(document).on('click', '*', function (e) {
         var target = e.target;
@@ -2957,7 +2961,7 @@ $(document).ready(function () {
     }
 
     // Image d'arrière-plan aléatoire lors de l'actualisation - Page de connexion
-    var bgArray = ['bg-login-0.jpg', 'bg-login-1.jpg', 'bg-login-2.jpg', 'bg-login-3.jpg', 'bg-login-9.jpg'];
+    var bgArray = ['bg-login-10.jpg', 'bg-login-1.jpg', 'bg-login-2.jpg', 'bg-login-3.jpg', 'bg-login-9.jpg'];
     var bg = bgArray[Math.floor(Math.random() * bgArray.length)];
 
     // Définition du chemin pour les images
@@ -3060,8 +3064,121 @@ $(document).ready(function () {
 
     var menuTop;
     var speed = 900;
-    menuTop = parseInt( $("#ei_tpl_fullsite").css("padding-top") ) - 10;
-    $("a#HSec0").on("click", function() {
+    menuTop = parseInt($("#ei_tpl_fullsite").css("padding-top")) - 10;
+    $("a#HSec0").on("click", function () {
         console.log("Plop");
+    });
+
+    // new template detail adherent
+    $(".corner-a-player").click(function () {
+        var targetValue;
+
+        if ($('.a-player-hover').css('left') == "0px") {
+            targetValue = '-100%';
+        } else {
+            targetValue = '0px';
+        }
+
+        $(".a-player-hover").animate({
+            left: targetValue
+        });
+        // $(".a-player-hover").animate({
+        //     width: "toggle"
+        // });
+    });
+
+    $('.labelBg div').on('click', function () {
+        $('.labelBg .active').removeClass('active');
+        $(this).toggleClass('active');
+        var bgurl = $(this).css('background-image');
+        var cleanup = /\"|\'|\)/g;
+        var val = bgurl.split('/').pop().replace(cleanup, '');
+        val2 = "img/" + val;
+        console.log(val2);
+        $('#activePicture').css('background-image', 'url("' + val2 + '")');
+        $('#activePicture').attr('src', val2);
+        $('[name=icon]').val(val2);
+    });
+
+    // Tooltips Initialization
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    // Evenement au chargement du background (contrôle du type d'image)
+    var fileInput = $(".form-control-file"),
+        the_return_bg = $("#message-background"),
+        bgTemplate = $("#activePicture");
+    fileInput.on("change", function () {
+        var file = this.files[0],
+            fileName = file.name,
+            fileType = file.type,
+            fileSize = file.size;
+        var bg = "img/" + fileName;
+        var validImageTypes = ["image/gif", "image/jpeg", "image/jpg", "image/tif", "image/png"];
+        var maxSize = 2000000; // fichier doit être inférieur à 2mb
+        if (($.inArray(fileType, validImageTypes) < 0) || (fileSize > maxSize)) {
+            the_return_bg.html('Uniquement du type jpeg, png ou tif, taille max à 2Mo');
+            the_return_bg.addClass('bg-msg-error');
+            // photoTemplate.attr("src", "img/undefined.jpg");
+        } else {
+            // the_return.html('Image prête à être mise en ligne');
+            the_return_bg.removeClass('bg-msg-error');
+            the_return_bg.css('display', 'none');
+            $('img.checkcover').hide();
+            $('.labelBg .active').removeClass('active');
+            $('[name=icon]').val('');
+            bgTemplate.removeAttr('src');
+            bgTemplate.css("background-image", 'none');
+            bgTemplate.attr("src", "img/" + fileName);
+            bgTemplate.css("background-image", 'url("' + bg + '")');
+        }
+    })
+
+    $('#exampleModal').on('hidden.bs.modal', function (e) {
+        location.reload();
+        $('#exampleModal').show();
+    });
+
+    // // Changement du mot de passe page connexion
+    // Gestion des input
+    $("#form-change-pw .input-effect input").focusout(function () {
+        if ($(this).val() != "") {
+            $(this).addClass("has-content-pw");
+        } else {
+            $(this).removeClass("has-content-pw");
+        }
+    });
+
+    var passwordForChange = $("#form-change-pw [name=password]");
+    var checkForChange = $('.check-password');
+    //show password
+    $('.icon-pw-hide').on('click', function () {
+        var input = $(this).prev().find('.password-for-change');
+        $(this).toggleClass('icon-pw');
+        if (input.attr('type') === "password") {
+            input.attr('type', 'text');
+        } else {
+            input.attr('type', 'password');
+        }
+    });
+
+    //GESTION DU PASSWORD
+    //On check si les 2 passwords sont les memes
+    $('#form-change-pw input[name="password_confirm"]').keyup(function () {
+        if (passwordForChange.val() !== checkForChange.val()) {
+            $(this).popover('show');
+            $(this).next('label').css('color', '#c11a1a');
+        }
+        if (passwordForChange.val() === checkForChange.val()) {
+            $(this).popover('hide');
+            $(this).next('label').css('color', '#a6d342');
+        }
+    });
+
+    //Fonction annuler
+    $('.clearValue').click(function() {
+        $('.password-for-change').val('');
+        $("#form-change-pw .input-effect input").removeClass("has-content-pw");
     });
 });

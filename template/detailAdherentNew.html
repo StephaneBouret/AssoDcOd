@@ -1,0 +1,616 @@
+<main id="main">
+    <header>
+        <div class="siteCache" id="siteCache"></div>
+        <div class="buttonMenu" id="buttonMenu" style="border-bottom: 0;">
+            <div id="hide-menu" class="btn-header">
+                <span>
+                    <a href="#" id="sidebarCollapse" data-action="toggleMenu" title="Aggrandir le menu">
+                        <i class="fa fa-reorder"></i>
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <nav id="principal" class="menu">
+            <div id="open-menu" class="btn-header">
+                <span>
+                    <a href="#" id="closedMenu" data-action="toggleMenu" title="Déplier le menu">
+                        <i class="fa fa-arrow-left"></i>
+                        <i class="fa fa-reorder"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="inner-left-pannel">
+                <div class="my-avatar">
+                    <a href="#" title="Voir l'association">
+                        <img src="{logoPrincipal}" class="img-fluid img-circle img-thumbnail" alt="logo">
+                    </a>
+                </div>
+                <div class="my-moving-parts">
+                    <div class="my-param-content"></div>
+                    <div class="my-normal-content">
+                        <div class="my-search-field" {hiddenSearchField}>
+                            <div class="">
+                                <div class="">
+                                    <form method="POST" name="member-filter" class="member-filters"
+                                        action="index.php?controller=adherent&action=detailMember" id="member-filter">
+                                        <div class="">
+                                            <div class="row my-form-element-container">
+                                                <div class="form-element search-button font-family-FA">
+                                                    <input type="submit" name="submit" class="btn btn-primary"
+                                                        value="&#xf002">
+                                                </div>
+                                                <div class="form-element search-field">
+                                                    <div id="search_member" class="form-group">
+                                                        <select id='sel_members' name='sel_members'></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inner-tabs-navigation" data-active="menu">
+                            <div class="onglets" data-onglet="menu" title="Ouvrir le menu de navigation">
+                                Navigation </div>
+                            <div class="onglets" data-onglet="account" title="Voir mon compte">
+                                Mon compte </div>
+                        </div>
+                        <div class="inner-tabs">
+                            <div class="account-tab">
+
+                                <div class="parameters-opener" title="Ouvrir mes paramètres">
+                                    <a href="{account}" class="btn btn-labeled btn-primary"
+                                        style="margin-top:9px; margin-right:9px">
+                                        <span class="btn-label" style="font-size: 13px;font-weight: 900;">
+                                            <i class="fa falock fa-cog"></i></span>
+                                        <span class="title">Paramètres du compte</span>
+                                    </a>
+                                </div>
+                                <div class="logout-opener" title="Ouvrir mes paramètres">
+                                    <a href="{logout}" class="btn btn-labeled btn-danger confirm"
+                                        data-callback="confirmLogoutCallback" title="Déconnexion"
+                                        data-confirm="{&quot;title&quot;:&quot;D\u00e9connexion&quot;,&quot;content&quot;:&quot;Vous pouvez am\u00e9liorer votre s\u00e9curit\u00e9 apr\u00e8s vous \u00eatre d\u00e9connect\u00e9 en fermant votre navigateur.&quot;,&quot;yes_button_text&quot;:&quot;Oui&quot;,&quot;no_button_text&quot;:&quot;Non&quot;}"
+                                        style="margin-top:9px; margin-right:9px">
+                                        <span class="btn-label" style="font-size: 13px;font-weight: 900;">
+                                            <i class="fa fa-sign-out"></i></span>
+                                        <span class="title">Déconnexion</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="menu-tab">
+                                <nav class="menu-principal">
+                                    <ul class="menu-principal-list">
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Tableau de bord" href="index.php">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-dashboard fa-xs"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Tableau de bord </span>
+                                            </a>
+                                        </li>
+                                        {liParamsAsso}
+                                        {liAddMembers}
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Liste adhérents"
+                                                href="{actionListMembers}">
+                                                <span class="icon-container">
+                                                    <i class="fa fa-users"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Liste des adhérents </span>
+                                            </a>
+                                        </li>
+                                        {liAddUsers}
+                                        {liAddDonations}
+                                        {liCreateCampaign}
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Consulter vos documents"
+                                                href="{actionReadDocuments}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-atlas"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Consulter vos documents </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-dl-view="true" data-dl-title="Gérer vos news"
+                                                href="{actionCreateNews}">
+                                                <span class="icon-container">
+                                                    <i class="fas fa-rss"></i>
+                                                </span>
+                                                <span class="text item">
+                                                    Gérez vos news </span>
+                                            </a>
+                                        </li>
+                                        {liAddGroup}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+        </nav>
+    </header>
+    <div class="position-relative">
+        <div id="image" class="container-fluid overflow img-cover-active"
+            style="background-image: url({backgroundImage});">
+            <div id="ga-Member-star" class="corner-a-player">
+                <i class="fas fa-star animated infinite flash"></i>
+            </div>
+        </div>
+        <div class="a-player-hover overflow">
+            <div class="row">
+                <div class="col-md-6 offset-md-4 text-light mt-60">
+                    <h3 class="text-uppercase black">
+                        {detail-role}
+                        {imgBadgeUserOrAdherent}
+                    </h3>
+                    <h4 class="black mt-1">
+                        {detail-name}
+                    </h4>
+                    <p class="mb-0">{text-role}</p>
+                </div>
+            </div>
+        </div>
+        <div class="cover-pic">
+            <div role="button" data-toggle="tooltip" data-placement="bottom" title="Modifier votre photo de couverture">
+                <a href="" data-toggle="modal" data-target="#exampleModal">
+                    <img id="tooltip-cover" src="img/icon-cover-1.png" alt="cover picture" class="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container mb-4 pt-0">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="text-center wrapper-avatar mx-auto">
+                    <div class="Profileimage">
+                        <img src="{photo}" class="img-fluid img-circle img-avatar" alt="photo/avatar">
+                    </div>
+                    <!-- <div>
+                        <svg id="avatar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="180" height="180" data-ratio="1">
+                            <defs>
+                                <pattern id="avatar-1602771099510" width="1" height="1">
+                                    <image xlink:href="{photo}" width="100%" height="100%"></image>
+                                </pattern>
+                                <linearGradient id="gradient-1602771099510" spreadMethod="pad">
+                                    <stop offset="0%" stop-color="#0096ff " stop-opacity="1"></stop>
+                                    <stop offset="100%" stop-color="#ff0080" stop-opacity="1"></stop>
+                                </linearGradient>
+                            </defs>
+                            <circle r="90" cx="90" cy="90" style="fill: url(&quot;#gradient-1602771099510&quot;);">
+                            </circle>
+                            <circle r="81" cx="90" cy="90" style="fill: url(&quot;#avatar-1602771099510&quot;);">
+                            </circle>
+                        </svg>
+                    </div> -->
+                    <div id="hideMenu" class="overlay" role="button" tabindex="0">
+                        <div class="edit-avatar text-center">
+                            <div class="reveal-on-hover">
+                                <img title="informations membre" src="img/edit-avatar.png" alt="informations" width="27"
+                                    height="27" class="img-edit-avatar">
+                                <span class="d-block font-s mt-2 text-white">Informations
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reveal-on-click">
+                        <div style="margin-top:20px;" class="row text-left">
+                            <div class="col-md-12 col-sm-3 hidden-xs">
+                                <dl>
+                                    <dt>{labelFunctionAssociation}</dt>
+                                    <dd>{functionAssociation}</dd>
+                                    <dt>Statut associatif :</dt>
+                                    <dd>{statutAssociation}</dd>
+                                </dl>
+                            </div>
+                            <div class="col-md-12 col-sm-9">
+                                <dl>
+                                    <dt>E-mail :</dt>
+                                    <dd>{email}</dd>
+                                    <dt>Téléphone :</dt>
+                                    <dd>{telephone}</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h2 class="black font-xxl grey-dark font-open-sans mb-0">
+                        {detail-name}
+                    </h2>
+                </div>
+                {message}
+                <div class="row" {hiddenButtonDropdown}>
+                    <div class="col-12 text-center mt-3 mb-3">
+                        <div class="dropdown b-dropdown nav-mobile btn-group">
+                            <button class="btn dropdown-toggle btn-secondary btn-lg" type="button" id="dropdownMenu2"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user-slash green"></i> {labeDeleteUserOrAdherent}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <a {hiddenButtonSuppMember} id='closeMember' class="dropdown-item" href="{delete}"><i
+                                        class="fas fa-user-slash green mr-2"></i>{labeDeleteUserOrAdherent}</a>
+                                <a {hiddenButtonCancelledMember} class="dropdown-item" href="{cancelled}"><i
+                                        class="fas fa-eject green mr-2"></i>Radiation</a>
+                                <a {cssActionBackAndActionSendUser} class="dropdown-item"
+                                    href="{actionSendReceiptMember}"><i
+                                        class="fas fa-receipt green mr-2"></i>Justificatif de paiement</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row sub-nav-page">
+                    <div class="col-md-11 offset-md-1">
+                        <ul class="nav sub-nav-content mt-1 justify-content-center">
+                            <li class="nav-item active">
+                                <a href="#" target="_self" class="nav-link">
+                                    Mon profil
+                                    <span class="hover-link anim-up animated slideInUp"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{connexion}" target="_self" class="nav-link">
+                                    Connexion
+                                    <span class="hover-link anim-up animated slideInUp"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{update}" target="_self" class="nav-link">
+                                    Modification
+                                    <span class="hover-link anim-up animated slideInUp"></span>
+                                </a>
+                            </li>
+                            <li {cssActionBackAndActionSend} class="nav-item">
+                                <a href="{actionBack}" target="_self" class="nav-link">
+                                    Retour
+                                    <span class="hover-link anim-up animated slideInUp"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-11 offset-md-1">
+                        <div>
+                            <h1 class="black text-uppercase font-xl grey-dark font-open-sans mt-53">
+                                <i class="fa fa-user"></i> Informations personnelles
+                            </h1>
+                            <div class="fieldset-content d-flex flex-wrap mt-4">
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Votre email :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{email}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Votre télephone :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{telephone}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Votre adresse :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{adresse}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-address-card"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Votre code postal :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{codepostal}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-address-card"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Votre ville :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{ville}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-city"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Votre Diplôme :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{degree}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-graduation-cap"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Poste occupé :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{job}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <span class="help-block-detail">{family}</span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-tasks"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div {switchUserOrAdherent} class="col-md-11 offset-md-1">
+                        <div>
+                            <h1 class="black text-uppercase font-xl grey-dark font-open-sans mt-53">
+                                <i class="fas fa-chart-line"></i> Statut de l'adhérent
+                            </h1>
+                            <div class="fieldset-content d-flex flex-wrap mt-4">
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Votre fonction :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{fonction}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-users-crown"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Votre statut :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{statut}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-layer-group"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div {switchUserOrAdherent} class="col-md-11 offset-md-1">
+                        <div>
+                            <h1 class="black text-uppercase font-xl grey-dark font-open-sans mt-53">
+                                <i class="far fa-calendar-alt"></i> Ancienneté de l'adhérent
+                            </h1>
+                            <div class="fieldset-content d-flex flex-wrap mt-4">
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Date d'entrée :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{dateEntree}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-calendar-plus"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Date de sortie :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{dateSortie}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-calendar-minus"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Ancienneté :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{anciennete}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-birthday-cake"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Date de renouvellement :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{dateRenewal}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-calendar-edit"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div {switchUserOrAdherent} class="col-md-11 offset-md-1">
+                        <div>
+                            <h1 class="black text-uppercase font-xl grey-dark font-open-sans mt-53">
+                                <i class="fas fa-euro-sign"></i> Cotisations de l'adhérent
+                            </h1>
+                            <div class="fieldset-content d-flex flex-wrap mt-4">
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Votre cotisation :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{cotisations}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-coins"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Votre mode de réglement :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{reglement}</p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-credit-card"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div {switchAdherentOrUser} class="col-md-11 offset-md-1">
+                        <div>
+                            <h1 class="black text-uppercase font-xl grey-dark font-open-sans mt-53">
+                                <i class="fas fa-users-crown"></i> Groupe d'Adhérent
+                            </h1>
+                            <div class="fieldset-content d-flex flex-wrap mt-4">
+                                <div class="col-md-6 mb-2">
+                                    <p class="label-detail">Votre groupe :</p>
+                                    <p class="form-control-adherent form-detail has-padding effet-20">{groupeAdherent}
+                                    </p>
+                                    <span class="focus-border bg-branding"></span>
+                                    <div class="icon-member">
+                                        <i class="fad fa-users-class"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <form action="index.php?controller=adherent&action={action}" id="formAdherent" method="POST"
+                        enctype="multipart/form-data">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                <span class="black">Sélectionner une image de couverture :</span>
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="message-background" class="text-center"></div>
+                            <div class="wrapper-cover-select">
+                                <div class="row">
+                                    <div class="col-md-12 mt-3">
+                                        <div id="activePicture" class="download-picture active text-center" style="background-image: url({backgroundImage});">
+                                            <div class="wrapper-edit-picture">
+                                                <button type="button" class="buttonBG btn mt-200 btn-outline-secondary">
+                                                    <input type="file" class="form-control-file" id="backgroundMember" name="backgroundMember" aria-describedby="backgroundMember">Modifier
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 mt-3 choice-cover">
+                                        <h4 class="black font-l">Ou sélectionner une image ci-dessous :</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <input type="hidden" name="icon" value="">
+                                    <div class="col-lg-4 col-md-6 mt-3">
+                                        <div style="height:150px;cursor:pointer;text-align:center;">
+                                            <label class="labelBg">
+                                                <input type="radio" name="background" value="img/cover-00.jpg">
+                                                <div class="img-cover text-center" style="background-image: url(img/cover-00.jpg);">
+                                                    <span>
+                                                        <img title="check" src="img/check-cover.png" alt="check" class="mx-auto mt-5">
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 mt-3">
+                                        <div style="height:150px;cursor:pointer;text-align:center;">
+                                            <label class="labelBg">
+                                                <input type="radio" name="background" value="img/bg-login-1.jpg">
+                                                <div class="img-cover text-center" style="background-image: url(img/bg-login-1.jpg);">
+                                                    <span>
+                                                        <img title="check" src="img/check-cover.png" alt="check" class="mx-auto mt-5">
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 mt-3">
+                                        <div style="height:150px;cursor:pointer;text-align:center;">
+                                            <label class="labelBg">
+                                                <input type="radio" name="background" value="img/bg-login-11.jpg">
+                                                <div class="img-cover text-center" style="background-image: url(img/bg-login-11.jpg);">
+                                                    <span>
+                                                        <img title="check" src="img/check-cover.png" alt="check" class="mx-auto mt-5">
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 mt-3">
+                                        <div style="height:150px;cursor:pointer;text-align:center;">
+                                            <label class="labelBg">
+                                                <input type="radio" name="background" value="img/bg-login-12.jpg">
+                                                <div class="img-cover text-center" style="background-image: url(img/bg-login-12.jpg);">
+                                                    <span>
+                                                        <img title="check" src="img/check-cover.png" alt="check" class="mx-auto mt-5">
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 mt-3">
+                                        <div style="height:150px;cursor:pointer;text-align:center;">
+                                            <label class="labelBg">
+                                                <input type="radio" name="background" value="img/bg-login-13.jpg">
+                                                <div class="img-cover text-center" style="background-image: url(img/bg-login-13.jpg);">
+                                                    <span>
+                                                        <img title="check" src="img/check-cover.png" alt="check" class="mx-auto mt-5">
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 mt-3">
+                                        <div style="height:150px;cursor:pointer;text-align:center;">
+                                            <label class="labelBg">
+                                                <input type="radio" name="background" value="img/bg-login-10.jpg">
+                                                <div class="img-cover text-center" style="background-image: url(img/bg-login-10.jpg);">
+                                                    <span>
+                                                        <img title="check" src="img/check-cover.png" alt="check" class="mx-auto mt-5">
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 mt-3">
+                                        <div style="height:150px;cursor:pointer;text-align:center;">
+                                            <label class="labelBg">
+                                                <input type="radio" name="background" value="img/bg-login-2.jpg">
+                                                <div class="img-cover text-center" style="background-image: url(img/bg-login-2.jpg);">
+                                                    <span>
+                                                        <img title="check" src="img/check-cover.png" alt="check" class="mx-auto mt-5">
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 mt-3">
+                                        <div style="height:150px;cursor:pointer;text-align:center;">
+                                            <label class="labelBg">
+                                                <input type="radio" name="background" value="img/bg-login-3.jpg">
+                                                <div class="img-cover text-center" style="background-image: url(img/bg-login-3.jpg);">
+                                                    <span>
+                                                        <img title="check" src="img/check-cover.png" alt="check" class="mx-auto mt-5">
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 mt-3">
+                                        <div style="height:150px;cursor:pointer;text-align:center;">
+                                            <label class="labelBg">
+                                                <input type="radio" name="background" value="img/bg-login-9.jpg">
+                                                <div class="img-cover text-center" style="background-image: url(img/bg-login-9.jpg);">
+                                                    <span>
+                                                        <img title="check" src="img/check-cover.png" alt="check" class="mx-auto mt-5">
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <div class="bottom padding-10 actions">
+                                <input type="submit" name="submit" id="submitBg" class="btn btn-primary btn-xs-full"
+                                    value="Enregistrer">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

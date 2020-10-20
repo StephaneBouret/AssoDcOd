@@ -187,6 +187,44 @@ class SecurityController extends Controller {
     }
 
     /**
+     * Gestion de la modification du mot de passe
+     *
+     * @return void
+     */
+    public function changePW()
+    {
+        $id = $_GET['id'];
+        $passwordInDB = $this->model->getPasswordInDB($id);
+        // $passwordInDB = $_SESSION['user']['password'];
+        $password = $_POST['password'];
+        $password_confirm = $_POST['password_confirm'];
+        $verifOldPW = password_verify($_POST['old-password'], $passwordInDB['password']);
+        $regexCharacterChoice = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)/';
+        $errors = [];
+        
+        if ($verifOldPW === false) {
+            $errors['password'] = 'Votre ancien mot de passe est incorrect';
+            $this->model->setFlash('danger', 'Votre ancien mot de passe est incorrect');
+            header('location:index.php?controller=adherent&action=connexionForm&id='.$id.'');
+        }
+        if (empty($password) || strlen($password) < 8 || !preg_match($regexCharacterChoice, $password)) {
+            $errors['password'] = 'Vous devez rentrer un mot de passe valide';
+            $this->model->setFlash('danger', 'Vous devez rentrer un mot de passe valide');
+            header('location:index.php?controller=adherent&action=connexionForm&id='.$id.'');
+        }
+        if ($password != $password_confirm) {
+            $errors['password'] = 'Les mots de passe ne correspondent pas';
+            $this->model->setFlash('danger', 'Les mots de passe ne correspondent pas');
+            header('location:index.php?controller=adherent&action=connexionForm&id='.$id.'');
+        }
+        if (empty($errors)) {
+            $this->model->changePW();
+            $this->model->setFlash('success', 'Votre mot de passe a bien été modifié');
+            header('location:index.php?controller=adherent&action=connexionForm&id='.$id.'');
+        }
+    }
+
+    /**
      * Gestion de l'affichage du formulaire pour réinitialiser le mot de passe
      *
      * @return void

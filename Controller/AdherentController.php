@@ -129,6 +129,33 @@ class AdherentController extends Controller
     }
 
     /**
+     * Gestion affichage modification du mot de passe du user ou adherent
+     *
+     * @return void
+     */
+    public function connexionForm()
+    {
+        $adherent = $this->model->getAdherent();
+        $associationDisplay = $this->model->getFullAssociation();
+        $this->view->modalConnexion($adherent, $associationDisplay);
+    }
+
+    /**
+     * Gestion modification du background modal
+     *
+     * @return void
+     */
+    public function addBG()
+    {
+        $id = $_GET['id'];
+        $this->model->updateBG();
+        unset($_FILES);
+        unset($_POST);
+        $this->model->setFlash('success', 'Les modifications ont bien été prises en compte');
+        header('location:index.php?controller=adherent&action=modal&id=' . $id . '');
+    }
+
+    /**
      * Gestion de la supression d'un item
      *
      * @return void

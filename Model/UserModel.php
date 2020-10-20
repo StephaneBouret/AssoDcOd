@@ -100,7 +100,7 @@ class UserModel extends Model {
         $phone_expr = '/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/';
         if (preg_match($phone_expr, $tel) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $requete = $this->connexion->prepare("INSERT INTO adherent
-            VALUES (NULL, :prenom, :nom, :sexe, :adresse, :CP, :ville, :telephone, :email, :degree, :avatar, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, :id_jobs, NULL, NULL, NULL, NULL, '2', :id_groupeAdherent, '2')");
+            VALUES (NULL, :prenom, :nom, :sexe, :adresse, :CP, :ville, :telephone, :email, :degree, :avatar, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, :id_jobs, NULL, NULL, NULL, NULL, '2', :id_groupeAdherent, '2')");
             $requete->bindParam(':prenom', $prenom);
             $requete->bindParam(':nom', $nom);
             $requete->bindParam(':sexe', $sexe);

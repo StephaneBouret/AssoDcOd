@@ -50,7 +50,7 @@ function extractParameters(){
     $controllerNotAuth = ['SecurityController', 'ContactController'];
     $actionNotAuth = ['start', 'sendMessage', 'formRegister', 'registerMember', 'formLogin', 'login', 'confirm', 'formForget', 'forget', 'confirmForget', 'formReset', 'reset'];
     $controllerNotAdmin = ['SecurityController', 'DocumentController', 'AdherentController', 'ContactController', 'GroupController'];
-    $actionNotAdmin = ['listFiles', 'show', 'start', 'detailForm', 'detailDoc', 'modal', 'sendMessage', 'ajaxAutocompletionJobs', 'ajaxAutocompletionDocs', 'updateFormOnlyMember', 'updateDBOnlyMember', 'formRegister', 'registerMember', 'formLogin', 'login', 'logout', 'confirm', 'formForget', 'forget', 'confirmForget', 'formReset', 'reset'];
+    $actionNotAdmin = ['listFiles', 'show', 'start', 'detailForm', 'detailDoc', 'modal', 'sendMessage', 'ajaxAutocompletionJobs', 'ajaxAutocompletionDocs', 'updateFormOnlyMember', 'updateDBOnlyMember', 'formRegister', 'registerMember', 'formLogin', 'login', 'logout', 'confirm', 'formForget', 'forget', 'confirmForget', 'formReset', 'reset', 'connexionForm', 'addBG', 'changePW'];
 
     /**
      * récupération des données de l'url

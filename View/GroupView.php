@@ -14,16 +14,6 @@ class GroupView extends View {
         $this->page .= "<main id='main'>";
         $this->page .= file_get_contents('template/headerListGroup.html');
         $this->page = str_replace('{titreFormulaire}','Les groupes d\'utilisateurs',$this->page);
-        $this->page = str_replace('{actionAddMembers}', 'index.php?controller=adherent&action=addForm',$this->page);
-        $this->page = str_replace('{actionListMembers}', 'index.php?controller=adherent&action=start',$this->page);
-        $this->page = str_replace('{actionParamAssoc}', 'index.php?controller=association&action=start',$this->page);
-        $this->page = str_replace('{actionAddUsers}', 'index.php?controller=user&action=start',$this->page);
-        $this->page = str_replace('{actionAddDonations}', 'index.php?controller=dons&action=start',$this->page);
-        $this->page = str_replace('{actionCreateCampaign}', 'index.php?controller=campaign&action=start',$this->page);
-        $this->page = str_replace('{actionReadDocuments}', 'index.php?controller=document&action=listFiles',$this->page);
-        $this->page = str_replace('{actionCreateNews}', 'index.php?controller=document&action=listFiles',$this->page);
-        $this->page = str_replace('{actionAddGroupMembers}', 'index.php?controller=group&action=listFiles',$this->page);
-        $this->page = str_replace('{logout}', 'index.php?controller=security&action=logout',$this->page);
         if (isset($_SESSION)) {
             $this->page = str_replace('{account}', 'index.php?controller=adherent&action=modal&id='.$_SESSION['user']['id'].'',$this->page);
         } else {
@@ -52,6 +42,16 @@ class GroupView extends View {
         $this->page = str_replace('{activeAdd}', 'class="active"',$this->page);
         $this->page = str_replace('{fa-toolbox}', 'pres fas fa-hotel',$this->page);
         $this->page = str_replace('{header-css}', '',$this->page);
+        $this->page = str_replace('{actionAddMembers}', 'index.php?controller=adherent&action=addForm',$this->page);
+        $this->page = str_replace('{actionListMembers}', 'index.php?controller=adherent&action=start',$this->page);
+        $this->page = str_replace('{actionParamAssoc}', 'index.php?controller=association&action=start',$this->page);
+        $this->page = str_replace('{actionAddUsers}', 'index.php?controller=user&action=start',$this->page);
+        $this->page = str_replace('{actionAddDonations}', 'index.php?controller=dons&action=start',$this->page);
+        $this->page = str_replace('{actionCreateCampaign}', 'index.php?controller=campaign&action=start',$this->page);
+        $this->page = str_replace('{actionReadDocuments}', 'index.php?controller=document&action=listFiles',$this->page);
+        $this->page = str_replace('{actionCreateNews}', 'index.php?controller=document&action=listFiles',$this->page);
+        $this->page = str_replace('{actionAddGroupMembers}', 'index.php?controller=group&action=listFiles',$this->page);
+        $this->page = str_replace('{logout}', 'index.php?controller=security&action=logout',$this->page);
         if (empty($associationDisplay['logo'])) {
             $this->page = str_replace('{photo}', 'img/undefined.jpg',$this->page);
         } else {
